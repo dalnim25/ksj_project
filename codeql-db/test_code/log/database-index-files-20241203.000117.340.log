@@ -1,0 +1,10 @@
+[2024-12-03 00:01:17] This is codeql database index-files --include-extension=.yaml --include-extension=.yml --size-limit=5m --language yaml -- /Users/haeirn/project/codeql-db/test_code
+[2024-12-03 00:01:17] Log file was started late.
+[2024-12-03 00:01:17] Using index-files script /usr/local/bin/yaml/tools/index-files.sh.
+[2024-12-03 00:01:17] [PROGRESS] database index-files> Scanning for files in /Users/haeirn/project/test_code...
+[2024-12-03 00:01:17] Calling plumbing command: codeql resolve files --include-extension=.yaml --include-extension=.yml --size-limit=5m /Users/haeirn/project/test_code --format=json
+[2024-12-03 00:01:17] [PROGRESS] resolve files> Scanning /Users/haeirn/project/test_code...
+[2024-12-03 00:01:17] Plumbing command codeql resolve files completed:
+                      [ ]
+[2024-12-03 00:01:17] [DETAILS] database index-files> Found 0 files.
+[2024-12-03 00:01:17] Terminating normally.

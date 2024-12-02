@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secure Coding Analysis Report</title>
+</head>
+<body>
+    <h1>Secure Coding Analysis Report</h1>
+
+    <h2>CodeQL Analysis Results</h2>
+    <ul>
+        {% for vuln in codeql_vulnerabilities %}
+        <li>
+            File: {{ vuln.file }} (Line {{ vuln.line }})<br>
+            Vulnerability: {{ vuln.vuln_name }}<br>
+            Description: {{ vuln.vuln_description }}
+        </li>
+        {% endfor %}
+    </ul>
+
+    <h2>SBOM Analysis Results</h2>
+    <ul>
+        {% for sbom in sbom_vulnerabilities %}
+        <li>
+            Package: {{ sbom.package }}<br>
+            CVE: {{ sbom.cve }}<br>
+            Severity: {{ sbom.severity }}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

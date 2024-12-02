@@ -1,0 +1,523 @@
+{
+ "matches": [
+  {
+   "vulnerability": {
+    "id": "GHSA-m2qf-hxjv-5gpq",
+    "dataSource": "https://github.com/advisories/GHSA-m2qf-hxjv-5gpq",
+    "namespace": "github:language:python",
+    "severity": "High",
+    "urls": [
+     "https://github.com/advisories/GHSA-m2qf-hxjv-5gpq"
+    ],
+    "description": "Flask vulnerable to possible disclosure of permanent session cookie due to missing Vary: Cookie header",
+    "cvss": [
+     {
+      "version": "3.1",
+      "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+      "metrics": {
+       "baseScore": 7.5,
+       "exploitabilityScore": 3.9,
+       "impactScore": 3.6
+      },
+      "vendorMetadata": {
+       "base_severity": "High",
+       "status": "N/A"
+      }
+     }
+    ],
+    "fix": {
+     "versions": [
+      "2.2.5"
+     ],
+     "state": "fixed"
+    },
+    "advisories": []
+   },
+   "relatedVulnerabilities": [
+    {
+     "id": "CVE-2023-30861",
+     "dataSource": "https://nvd.nist.gov/vuln/detail/CVE-2023-30861",
+     "namespace": "nvd:cpe",
+     "severity": "High",
+     "urls": [
+      "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b",
+      "https://github.com/pallets/flask/commit/afd63b16170b7c047f5758eb910c416511e9c965",
+      "https://github.com/pallets/flask/releases/tag/2.2.5",
+      "https://github.com/pallets/flask/releases/tag/2.3.2",
+      "https://github.com/pallets/flask/security/advisories/GHSA-m2qf-hxjv-5gpq",
+      "https://lists.debian.org/debian-lts-announce/2023/08/msg00024.html",
+      "https://security.netapp.com/advisory/ntap-20230818-0006/",
+      "https://www.debian.org/security/2023/dsa-5442",
+      "https://github.com/pallets/flask/commit/70f906c51ce49c485f1d355703e9cc3386b1cc2b",
+      "https://github.com/pallets/flask/commit/afd63b16170b7c047f5758eb910c416511e9c965",
+      "https://github.com/pallets/flask/releases/tag/2.2.5",
+      "https://github.com/pallets/flask/releases/tag/2.3.2",
+      "https://github.com/pallets/flask/security/advisories/GHSA-m2qf-hxjv-5gpq",
+      "https://lists.debian.org/debian-lts-announce/2023/08/msg00024.html",
+      "https://security.netapp.com/advisory/ntap-20230818-0006/",
+      "https://www.debian.org/security/2023/dsa-5442"
+     ],
+     "description": "Flask is a lightweight WSGI web application framework. When all of the following conditions are met, a response containing data intended for one client may be cached and subsequently sent by the proxy to other clients. If the proxy also caches `Set-Cookie` headers, it may send one client's `session` cookie to other clients. The severity depends on the application's use of the session and the proxy's behavior regarding cookies. The risk depends on all these conditions being met.\n\n1. The application must be hosted behind a caching proxy that does not strip cookies or ignore responses with cookies.\n2. The application sets `session.permanent = True`\n3. The application does not access or modify the session at any point during a request.\n4. `SESSION_REFRESH_EACH_REQUEST` enabled (the default).\n5. The application does not set a `Cache-Control` header to indicate that a page is private or should not be cached.\n\nThis happens because vulnerable versions of Flask only set the `Vary: Cookie` header when the session is accessed or modified, not when it is refreshed (re-sent to update the expiration) without being accessed or modified. This issue has been fixed in versions 2.3.2 and 2.2.5.",
+     "cvss": [
+      {
+       "source": "security-advisories@github.com",
+       "type": "Secondary",
+       "version": "3.1",
+       "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+       "metrics": {
+        "baseScore": 7.5,
+        "exploitabilityScore": 3.9,
+        "impactScore": 3.6
+       },
+       "vendorMetadata": {}
+      },
+      {
+       "source": "nvd@nist.gov",
+       "type": "Primary",
+       "version": "3.1",
+       "vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:N/A:N",
+       "metrics": {
+        "baseScore": 7.5,
+        "exploitabilityScore": 3.9,
+        "impactScore": 3.6
+       },
+       "vendorMetadata": {}
+      }
+     ]
+    }
+   ],
+   "matchDetails": [
+    {
+     "type": "exact-direct-match",
+     "matcher": "python-matcher",
+     "searchedBy": {
+      "language": "python",
+      "namespace": "github:language:python",
+      "package": {
+       "name": "flask",
+       "version": "2.1.0"
+      }
+     },
+     "found": {
+      "versionConstraint": "<2.2.5 (python)",
+      "vulnerabilityID": "GHSA-m2qf-hxjv-5gpq"
+     }
+    }
+   ],
+   "artifact": {
+    "id": "b9db4e4edaa51d25",
+    "name": "flask",
+    "version": "2.1.0",
+    "type": "python",
+    "locations": [
+     {
+      "path": "/requirements.txt"
+     }
+    ],
+    "language": "python",
+    "licenses": [],
+    "cpes": [
+     "cpe:2.3:a:python-flask:python-flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python-flask:python_flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python_flask:python-flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python_flask:python_flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python:python-flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python:python_flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:flask:python-flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:flask:python_flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python-flask:flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python_flask:flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:python:flask:2.1.0:*:*:*:*:*:*:*",
+     "cpe:2.3:a:flask:flask:2.1.0:*:*:*:*:*:*:*"
+    ],
+    "purl": "pkg:pypi/flask@2.1.0",
+    "upstreams": []
+   }
+  },
+  {
+   "vulnerability": {
+    "id": "GHSA-j8r2-6x86-q33q",
+    "dataSource": "https://github.com/advisories/GHSA-j8r2-6x86-q33q",
+    "namespace": "github:language:python",
+    "severity": "Medium",
+    "urls": [
+     "https://github.com/advisories/GHSA-j8r2-6x86-q33q"
+    ],
+    "description": "Unintended leak of Proxy-Authorization header in requests",
+    "cvss": [
+     {
+      "version": "3.1",
+      "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N",
+      "metrics": {
+       "baseScore": 6.1,
+       "exploitabilityScore": 1.6,
+       "impactScore": 4
+      },
+      "vendorMetadata": {
+       "base_severity": "Medium",
+       "status": "N/A"
+      }
+     }
+    ],
+    "fix": {
+     "versions": [
+      "2.31.0"
+     ],
+     "state": "fixed"
+    },
+    "advisories": []
+   },
+   "relatedVulnerabilities": [
+    {
+     "id": "CVE-2023-32681",
+     "dataSource": "https://nvd.nist.gov/vuln/detail/CVE-2023-32681",
+     "namespace": "nvd:cpe",
+     "severity": "Medium",
+     "urls": [
+      "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+      "https://github.com/psf/requests/releases/tag/v2.31.0",
+      "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q",
+      "https://lists.debian.org/debian-lts-announce/2023/06/msg00018.html",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AW7HNFGYP44RT3DUDQXG2QT3OEV2PJ7Y/",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KOYASTZDGQG2BWLSNBPL3TQRL2G7QYNZ/",
+      "https://security.gentoo.org/glsa/202309-08",
+      "https://github.com/psf/requests/commit/74ea7cf7a6a27a4eeb2ae24e162bcc942a6706d5",
+      "https://github.com/psf/requests/releases/tag/v2.31.0",
+      "https://github.com/psf/requests/security/advisories/GHSA-j8r2-6x86-q33q",
+      "https://lists.debian.org/debian-lts-announce/2023/06/msg00018.html",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/AW7HNFGYP44RT3DUDQXG2QT3OEV2PJ7Y/",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/KOYASTZDGQG2BWLSNBPL3TQRL2G7QYNZ/",
+      "https://security.gentoo.org/glsa/202309-08"
+     ],
+     "description": "Requests is a HTTP library. Since Requests 2.3.0, Requests has been leaking Proxy-Authorization headers to destination servers when redirected to an HTTPS endpoint. This is a product of how we use `rebuild_proxies` to reattach the `Proxy-Authorization` header to requests. For HTTP connections sent through the tunnel, the proxy will identify the header in the request itself and remove it prior to forwarding to the destination server. However when sent over HTTPS, the `Proxy-Authorization` header must be sent in the CONNECT request as the proxy has no visibility into the tunneled request. This results in Requests forwarding proxy credentials to the destination server unintentionally, allowing a malicious actor to potentially exfiltrate sensitive information. This issue has been patched in version 2.31.0.\n\n",
+     "cvss": [
+      {
+       "source": "security-advisories@github.com",
+       "type": "Secondary",
+       "version": "3.1",
+       "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N",
+       "metrics": {
+        "baseScore": 6.1,
+        "exploitabilityScore": 1.6,
+        "impactScore": 4
+       },
+       "vendorMetadata": {}
+      },
+      {
+       "source": "nvd@nist.gov",
+       "type": "Primary",
+       "version": "3.1",
+       "vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:N/A:N",
+       "metrics": {
+        "baseScore": 6.1,
+        "exploitabilityScore": 1.6,
+        "impactScore": 4
+       },
+       "vendorMetadata": {}
+      }
+     ]
+    }
+   ],
+   "matchDetails": [
+    {
+     "type": "exact-direct-match",
+     "matcher": "python-matcher",
+     "searchedBy": {
+      "language": "python",
+      "namespace": "github:language:python",
+      "package": {
+       "name": "requests",
+       "version": "2.27.1"
+      }
+     },
+     "found": {
+      "versionConstraint": ">=2.3.0,<2.31.0 (python)",
+      "vulnerabilityID": "GHSA-j8r2-6x86-q33q"
+     }
+    }
+   ],
+   "artifact": {
+    "id": "b76ab06251f3259a",
+    "name": "requests",
+    "version": "2.27.1",
+    "type": "python",
+    "locations": [
+     {
+      "path": "/requirements.txt"
+     }
+    ],
+    "language": "python",
+    "licenses": [],
+    "cpes": [
+     "cpe:2.3:a:python:requests:2.27.1:*:*:*:*:*:*:*"
+    ],
+    "purl": "pkg:pypi/requests@2.27.1",
+    "upstreams": []
+   }
+  },
+  {
+   "vulnerability": {
+    "id": "GHSA-9wx4-h78v-vm56",
+    "dataSource": "https://github.com/advisories/GHSA-9wx4-h78v-vm56",
+    "namespace": "github:language:python",
+    "severity": "Medium",
+    "urls": [
+     "https://github.com/advisories/GHSA-9wx4-h78v-vm56"
+    ],
+    "description": "Requests `Session` object does not verify requests after making first request with verify=False",
+    "cvss": [
+     {
+      "version": "3.1",
+      "vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N",
+      "metrics": {
+       "baseScore": 5.6,
+       "exploitabilityScore": 0.3,
+       "impactScore": 5.2
+      },
+      "vendorMetadata": {
+       "base_severity": "Medium",
+       "status": "N/A"
+      }
+     }
+    ],
+    "fix": {
+     "versions": [
+      "2.32.0"
+     ],
+     "state": "fixed"
+    },
+    "advisories": []
+   },
+   "relatedVulnerabilities": [
+    {
+     "id": "CVE-2024-35195",
+     "dataSource": "https://nvd.nist.gov/vuln/detail/CVE-2024-35195",
+     "namespace": "nvd:cpe",
+     "severity": "Medium",
+     "urls": [
+      "https://github.com/psf/requests/commit/a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac",
+      "https://github.com/psf/requests/pull/6655",
+      "https://github.com/psf/requests/security/advisories/GHSA-9wx4-h78v-vm56",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/IYLSNK5TL46Q6XPRVMHVWS63MVJQOK4Q/",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/N7WP6EYDSUOCOJYHDK5NX43PYZ4SNHGZ/",
+      "https://github.com/psf/requests/commit/a58d7f2ffb4d00b46dca2d70a3932a0b37e22fac",
+      "https://github.com/psf/requests/pull/6655",
+      "https://github.com/psf/requests/security/advisories/GHSA-9wx4-h78v-vm56",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/IYLSNK5TL46Q6XPRVMHVWS63MVJQOK4Q/",
+      "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/N7WP6EYDSUOCOJYHDK5NX43PYZ4SNHGZ/"
+     ],
+     "description": "Requests is a HTTP library. Prior to 2.32.0, when making requests through a Requests `Session`, if the first request is made with `verify=False` to disable cert verification, all subsequent requests to the same host will continue to ignore cert verification regardless of changes to the value of `verify`. This behavior will continue for the lifecycle of the connection in the connection pool. This vulnerability is fixed in 2.32.0.",
+     "cvss": [
+      {
+       "source": "security-advisories@github.com",
+       "type": "Secondary",
+       "version": "3.1",
+       "vector": "CVSS:3.1/AV:L/AC:H/PR:H/UI:R/S:U/C:H/I:H/A:N",
+       "metrics": {
+        "baseScore": 5.6,
+        "exploitabilityScore": 0.3,
+        "impactScore": 5.2
+       },
+       "vendorMetadata": {}
+      }
+     ]
+    }
+   ],
+   "matchDetails": [
+    {
+     "type": "exact-direct-match",
+     "matcher": "python-matcher",
+     "searchedBy": {
+      "language": "python",
+      "namespace": "github:language:python",
+      "package": {
+       "name": "requests",
+       "version": "2.27.1"
+      }
+     },
+     "found": {
+      "versionConstraint": "<2.32.0 (python)",
+      "vulnerabilityID": "GHSA-9wx4-h78v-vm56"
+     }
+    }
+   ],
+   "artifact": {
+    "id": "b76ab06251f3259a",
+    "name": "requests",
+    "version": "2.27.1",
+    "type": "python",
+    "locations": [
+     {
+      "path": "/requirements.txt"
+     }
+    ],
+    "language": "python",
+    "licenses": [],
+    "cpes": [
+     "cpe:2.3:a:python:requests:2.27.1:*:*:*:*:*:*:*"
+    ],
+    "purl": "pkg:pypi/requests@2.27.1",
+    "upstreams": []
+   }
+  }
+ ],
+ "source": {
+  "type": "directory",
+  "target": "test_code"
+ },
+ "distro": {
+  "name": "",
+  "version": "",
+  "idLike": null
+ },
+ "descriptor": {
+  "name": "grype",
+  "version": "0.85.0",
+  "configuration": {
+   "output": [
+    "json=sbom/test_code_grype_results.json"
+   ],
+   "file": "",
+   "distro": "",
+   "add-cpes-if-none": false,
+   "output-template-file": "",
+   "check-for-app-update": true,
+   "only-fixed": false,
+   "only-notfixed": false,
+   "ignore-wontfix": "",
+   "platform": "",
+   "search": {
+    "scope": "squashed",
+    "unindexed-archives": false,
+    "indexed-archives": true
+   },
+   "ignore": [
+    {
+     "vulnerability": "",
+     "reason": "",
+     "namespace": "",
+     "fix-state": "",
+     "package": {
+      "name": "kernel-headers",
+      "version": "",
+      "language": "",
+      "type": "rpm",
+      "location": "",
+      "upstream-name": "kernel"
+     },
+     "vex-status": "",
+     "vex-justification": "",
+     "match-type": "exact-indirect-match"
+    },
+    {
+     "vulnerability": "",
+     "reason": "",
+     "namespace": "",
+     "fix-state": "",
+     "package": {
+      "name": "linux-headers-.*",
+      "version": "",
+      "language": "",
+      "type": "deb",
+      "location": "",
+      "upstream-name": "linux"
+     },
+     "vex-status": "",
+     "vex-justification": "",
+     "match-type": "exact-indirect-match"
+    },
+    {
+     "vulnerability": "",
+     "reason": "",
+     "namespace": "",
+     "fix-state": "",
+     "package": {
+      "name": "linux-libc-dev",
+      "version": "",
+      "language": "",
+      "type": "deb",
+      "location": "",
+      "upstream-name": "linux"
+     },
+     "vex-status": "",
+     "vex-justification": "",
+     "match-type": "exact-indirect-match"
+    }
+   ],
+   "exclude": [],
+   "db": {
+    "cache-dir": "/Users/haeirn/Library/Caches/grype/db",
+    "update-url": "https://toolbox-data.anchore.io/grype/databases/listing.json",
+    "ca-cert": "",
+    "auto-update": true,
+    "validate-by-hash-on-start": false,
+    "validate-age": true,
+    "max-allowed-built-age": 432000000000000,
+    "require-update-check": false,
+    "update-available-timeout": 30000000000,
+    "update-download-timeout": 300000000000,
+    "max-update-check-frequency": 7200000000000
+   },
+   "externalSources": {
+    "enable": false,
+    "maven": {
+     "searchUpstreamBySha1": true,
+     "baseUrl": "https://search.maven.org/solrsearch/select"
+    }
+   },
+   "match": {
+    "java": {
+     "using-cpes": false
+    },
+    "jvm": {
+     "using-cpes": true
+    },
+    "dotnet": {
+     "using-cpes": false
+    },
+    "golang": {
+     "using-cpes": false,
+     "always-use-cpe-for-stdlib": true,
+     "allow-main-module-pseudo-version-comparison": false
+    },
+    "javascript": {
+     "using-cpes": false
+    },
+    "python": {
+     "using-cpes": false
+    },
+    "ruby": {
+     "using-cpes": false
+    },
+    "rust": {
+     "using-cpes": false
+    },
+    "stock": {
+     "using-cpes": true
+    }
+   },
+   "fail-on-severity": "",
+   "registry": {
+    "insecure-skip-tls-verify": false,
+    "insecure-use-http": false,
+    "auth": null,
+    "ca-cert": ""
+   },
+   "show-suppressed": false,
+   "by-cve": false,
+   "name": "",
+   "default-image-pull-source": "",
+   "vex-documents": [],
+   "vex-add": [],
+   "match-upstream-kernel-headers": false
+  },
+  "db": {
+   "built": "2024-12-02T01:32:37Z",
+   "schemaVersion": 5,
+   "location": "/Users/haeirn/Library/Caches/grype/db/5",
+   "checksum": "sha256:76004fdbc18386972cf55b5f8b38e55c1dc0cb06d071163df99819755240d70f",
+   "error": null
+  },
+  "timestamp": "2024-12-03T00:04:31.619843+09:00"
+ }
+}

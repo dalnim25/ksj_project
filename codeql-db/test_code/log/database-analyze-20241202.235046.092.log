@@ -1,0 +1,14 @@
+[2024-12-02 23:50:46] This is codeql database analyze codeql-db/test_code codeql-repo/python/ql/src/Security --format=csv --output=results/results.csv
+[2024-12-02 23:50:46] Log file was started late.
+[2024-12-02 23:50:46] [PROGRESS] database analyze> Running queries.
+[2024-12-02 23:50:46] Running plumbing command: codeql database run-queries --evaluator-log-level=5 --warnings=show --dynamic-join-order-mode=none --qlconfig-file=/Users/haeirn/project/qlconfig.yml --no-rerun --interpret-passthrough=null,--format=csv,-o=/Users/haeirn/project/results/results.csv,--max-paths=4,--csv-location-format=line-column,--print-diagnostics-summary,--print-metrics-summary,--qlconfig-file=/Users/haeirn/project/qlconfig.yml,--,/Users/haeirn/project/codeql-db/test_code,codeql-repo/python/ql/src/Security -- /Users/haeirn/project/codeql-db/test_code codeql-repo/python/ql/src/Security
+[2024-12-02 23:50:46] Calling plumbing command: codeql resolve ram --dataset=/Users/haeirn/project/codeql-db/test_code/db-python --format=json
+[2024-12-02 23:50:46] [PROGRESS] resolve ram> Stringpool size measured as 2154906
+[2024-12-02 23:50:46] Plumbing command codeql resolve ram completed:
+                      [
+                        "-J-Xmx1800M",
+                        "--off-heap-ram=1619"
+                      ]
+[2024-12-02 23:50:46] Chaining via /var/folders/8p/9b4636tn7916rfq364l94br40000gn/T/codeql.XXXXXXXX.vRsfTucTAu to plumbing: execute queries -J-Xmx1800M --off-heap-ram=1619 --verbosity=progress --logdir=/Users/haeirn/project/codeql-db/test_code/log --evaluator-log-level=5 --warnings=show --dynamic-join-order-mode=none --qlconfig-file=/Users/haeirn/project/qlconfig.yml --no-rerun --interpret-passthrough=null,--format=csv,-o=/Users/haeirn/project/results/results.csv,--max-paths=4,--csv-location-format=line-column,--print-diagnostics-summary,--print-metrics-summary,--qlconfig-file=/Users/haeirn/project/qlconfig.yml,--,/Users/haeirn/project/codeql-db/test_code,codeql-repo/python/ql/src/Security --output=/Users/haeirn/project/codeql-db/test_code/results -- /Users/haeirn/project/codeql-db/test_code/db-python codeql-repo/python/ql/src/Security
+[2024-12-02 23:50:46] Plumbing command codeql database run-queries completed with status 70.
+[2024-12-02 23:50:46] Exiting with code 70
