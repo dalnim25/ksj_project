@@ -12,3 +12,9 @@ A tool for CodeQL and SBOM analysis, integrated with a Flask-based web UI.
 1. **Install dependencies**:
    ```bash
    pip install -r requirements.txt
+
+2. **Run analysis**:
+   ***-CodeQL analysis***:
+   ```bash
+   python guidelineDB.py -s test_code -a
+
