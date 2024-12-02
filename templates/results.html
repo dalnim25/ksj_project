@@ -14,6 +14,8 @@
         <li>
             File: {{ vuln.file }} (Line {{ vuln.line }})<br>
             Vulnerability: {{ vuln.vuln_name }}<br>
+            CWE ID: {{ vuln.cwe_id }}<br>
+            Guideline: <a href="{{ vuln.guideline_url }}" target="_blank">{{ vuln.guideline_url }}</a><br>
             Description: {{ vuln.vuln_description }}
         </li>
         {% endfor %}
@@ -24,7 +26,7 @@
         {% for sbom in sbom_vulnerabilities %}
         <li>
             Package: {{ sbom.package }}<br>
-            CVE: {{ sbom.cve }}<br>
+            CVE: <a href="{{ sbom.fix_url }}" target="_blank">{{ sbom.cve }}</a><br>
             Severity: {{ sbom.severity }}
         </li>
         {% endfor %}
