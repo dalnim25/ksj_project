@@ -1,0 +1,50 @@
+[T 05:06:04 2368] CodeQL CLI version 2.19.4
+[T 05:06:04 2368] Initializing tracer.
+[T 05:06:04 2368] Initializing tags.
+[T 05:06:04 2368] ID set to 0000000000000940_0000000000000001 (parent root)
+[T 05:06:05 2368] Initializing tracer.
+[T 05:06:05 2368] Initializing tags.
+[T 05:06:05 2368] ID set to 0000000000000940_0000000000000002 (parent root)
+[T 05:06:05 2368] Warning: SEMMLE_EXEC and SEMMLE_EXECP not set. Falling back to path lookup on argv[0].
+[T 05:06:05 2368] ==== Candidate to intercept: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/tools/osx64/runner-osx (canonical: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/tools/osx64/runner-osx) ====
+[T 05:06:05 2368] Executing the following tracer actions:
+[T 05:06:05 2368] Tracer actions:
+[T 05:06:05 2368] pre_invocations(0)
+[T 05:06:05 2368] post_invocations(0)
+[T 05:06:05 2368] trace_languages(1): [go]
+[T 05:06:05 2384] Attempting to switch stdout/stderr to 3...
+/Users/haeirn/devsecops_project/codeql-db/go/potato/working/copy-root/000001F5/bin/sh.semmle.00000940.1ED85108.slice.x86_64: replacing existing signature
+[T 05:06:07 2368] Initializing tracer.
+[T 05:06:07 2368] Initializing tags.
+[T 05:06:07 2368] ID set to 0000000000000940_0000000000000003 (parent 0000000000000940_0000000000000002)
+[T 05:06:07 2368] ==== Candidate to intercept: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/go/tools/autobuild.sh (canonical: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/go/tools/autobuild.sh) ====
+[T 05:06:07 2368] Executing the following tracer actions:
+[T 05:06:07 2368] Tracer actions:
+[T 05:06:07 2368] pre_invocations(0)
+[T 05:06:07 2368] post_invocations(0)
+[T 05:06:07 2368] trace_languages(1): [go]
+[T 05:06:07 2398] Attempting to switch stdout/stderr to 3...
+/Users/haeirn/devsecops_project/codeql-db/go/potato/working/copy-root/000001F5/bin/bash.semmle.00000940.016D2878.slice.x86_64: replacing existing signature
+[T 05:06:07 2368] Initializing tracer.
+[T 05:06:07 2368] Initializing tags.
+[T 05:06:07 2368] ID set to 0000000000000940_0000000000000004 (parent 0000000000000940_0000000000000003)
+[T 05:06:07 2368] ==== Candidate to intercept: /bin/bash (canonical: /bin/bash) ====
+[T 05:06:08 2368] Executing the following tracer actions:
+[T 05:06:08 2368] Tracer actions:
+[T 05:06:08 2368] pre_invocations(0)
+[T 05:06:08 2368] post_invocations(0)
+[T 05:06:08 2368] trace_languages(1): [go]
+[T 05:06:08 2410] Attempting to switch stdout/stderr to 3...
+/Users/haeirn/devsecops_project/codeql-db/go/potato/working/copy-root/000001F5/opt/homebrew/Caskroom/codeql/2.19.4/codeql/go/tools/osx64/go-autobuilder.semmle.00000969.00AB72A0.slice.arm64: replacing existing signature
+[T 05:06:08 2409] Initializing tracer.
+[T 05:06:08 2409] Initializing tags.
+[T 05:06:08 2409] ID set to 0000000000000969_0000000000000001 (parent 0000000000000940_0000000000000004)
+[T 05:06:08 2409] ==== Candidate to intercept: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/go/tools/osx64/go-autobuilder (canonical: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/go/tools/osx64/go-autobuilder) ====
+[T 05:06:08 2409] Lua: === Intercepted call to /opt/homebrew/caskroom/codeql/2.19.4/codeql/go/tools/osx64/go-autobuilder ===
+[T 05:06:08 2409] Lua: Disabling tracing for language go.
+[T 05:06:08 2409] Executing the following tracer actions:
+[T 05:06:08 2409] Tracer actions:
+[T 05:06:08 2409] pre_invocations(0)
+[T 05:06:08 2409] post_invocations(0)
+[T 05:06:08 2409] trace_languages(0): []
+[T 05:06:08 2409] Disabling tracing for this command.

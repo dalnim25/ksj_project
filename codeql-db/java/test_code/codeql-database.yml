@@ -1,10 +1,10 @@
 ---
 sourceLocationPrefix: /Users/haeirn/devsecops_project/test_code
-baselineLinesOfCode: 17
+baselineLinesOfCode: 18
 unicodeNewlines: false
 columnKind: utf16
 primaryLanguage: java
 creationMetadata:
-  cliVersion: 2.19.3
-  creationTime: 2024-12-03T01:16:21.773530Z
+  cliVersion: 2.19.4
+  creationTime: 2024-12-03T05:17:17.235415Z
 finalised: true

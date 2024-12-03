@@ -1,3 +1,5 @@
+package src.main.java;
+
 import java.sql.*;
 
 public class TestApp {

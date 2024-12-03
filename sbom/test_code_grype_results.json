@@ -512,12 +512,12 @@
    "match-upstream-kernel-headers": false
   },
   "db": {
-   "built": "2024-12-02T01:32:37Z",
+   "built": "2024-12-03T01:31:03Z",
    "schemaVersion": 5,
    "location": "/Users/haeirn/Library/Caches/grype/db/5",
-   "checksum": "sha256:76004fdbc18386972cf55b5f8b38e55c1dc0cb06d071163df99819755240d70f",
+   "checksum": "sha256:e8985d5ce414d3ac2dc26789da6e4cdc0063a61eb8ffc969fbb720d2ce16737c",
    "error": null
   },
-  "timestamp": "2024-12-03T03:06:52.302558+09:00"
+  "timestamp": "2024-12-03T14:19:39.337825+09:00"
  }
 }

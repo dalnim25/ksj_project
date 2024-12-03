@@ -42,11 +42,10 @@ def codeql_analyze(source_root, languages):
         # 결과 디렉토리 생성
         os.makedirs(f'results/{language}', exist_ok=True)
 
-        # CodeQL 분석 및 결과 저장
+        # CodeQL 분석 및 결과 저장 (SARIF 형식으로 출력)
         subprocess.run([
             'codeql', 'database', 'analyze', f'codeql-db/{language}/{source_root}',
-            query_paths[language],  # 언어별 쿼리 경로 선택
-            '--format=csv', '--output', f'results/{language}/results.csv'
+            query_paths[language], '--format=sarif-latest', '--output', f'results/{language}/results.sarif'  # SARIF 형식으로 출력
         ], check=True)
 
 def sbom_analyze(source_root):
@@ -80,22 +79,30 @@ def display_results():
     languages = ['python', 'java', 'javascript', 'go']
     
     for language in languages:
-        codeql_results_path = f'results/{language}/results.csv'
+        codeql_results_path = f'results/{language}/results.sarif'  # SARIF 파일로 변경
+        if not os.path.exists(codeql_results_path):
+            continue  # SARIF 파일이 없으면 그 언어는 건너뜀
+
         with open(codeql_results_path, 'r') as file:
-            reader = csv.reader(file)
-            for row in reader:
-                if len(row) >= 6:
-                    cwe_id = row[0].split(" ")[0]  # 예: "CWE-79" 형태로 추출
-                    guideline_url = get_guideline_url(cwe_id)
-                    codeql_vulnerabilities.append({
-                        "vuln_name": row[0],
-                        "vuln_description": row[1],
-                        "file": row[4],
-                        "line": row[5],
-                        "cwe_id": cwe_id,
-                        "guideline_url": guideline_url,
-                        "language": language  # 언어 추가
-                    })
+            data = json.load(file)  # SARIF 형식으로 읽기
+            for result in data['runs'][0]['results']:
+                # SARIF의 'ruleId'에서 CWE ID 추출
+                cwe_id = result.get('ruleId', 'Unknown')  # 'ruleId'에서 CWE ID를 추출
+                
+                # 'properties'에서 CWE ID를 찾을 수 있으면 사용
+                if 'properties' in result:
+                    cwe_id = result['properties'].get('cwe', cwe_id)
+
+                guideline_url = get_guideline_url(cwe_id)
+                codeql_vulnerabilities.append({
+                    "vuln_name": result.get('message', {}).get('text', 'N/A'),
+                    "vuln_description": result.get('message', {}).get('text', 'N/A'),
+                    "file": result.get('locations', [{}])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'N/A'),
+                    "line": result.get('locations', [{}])[0].get('physicalLocation', {}).get('region', {}).get('startLine', 'N/A'),
+                    "cwe_id": cwe_id,  # 올바른 CWE ID
+                    "guideline_url": guideline_url,
+                    "language": language
+                })
 
     # Parse SBOM Results
     sbom_results_path = 'sbom/test_code_grype_results.json'
@@ -126,7 +133,7 @@ def main(argv):
         sys.exit()
 
     source_root = argv[argv.index('-s') + 1]
-    languages = ['python', 'java', 'javascript', 'go']  # 예시로 여러 언어 지원
+    languages = ['python', 'java', 'javascript']  # 예시로 여러 언어 지원
 
     if '-a' in argv or '--analyze' in argv:
         codeql_analyze(source_root, languages)
