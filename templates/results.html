@@ -16,6 +16,7 @@
             Vulnerability: {{ vuln.vuln_name }}<br>
             CWE ID: {{ vuln.cwe_id }}<br>
             Guideline: <a href="{{ vuln.guideline_url }}" target="_blank">{{ vuln.guideline_url }}</a><br>
+            Language: {{ vuln.language }}<br>
             Description: {{ vuln.vuln_description }}
         </li>
         {% endfor %}

@@ -17,25 +17,43 @@ def help():
     print('\t-sbom\t\t\tRun SBOM generation and vulnerability analysis.')
     print('\t-g, --guideline\t\tShow analysis results and generate secure coding guidelines.')
 
-def codeql_analyze(source_root):
-    os.makedirs('codeql-db', exist_ok=True)
-    subprocess.run([
-        'codeql', 'database', 'create', f'codeql-db/{source_root}',
-        '--language=python', '--source-root', source_root, '--overwrite'
-    ], check=True)
+def codeql_analyze(source_root, languages):
+    # 각 언어별 CodeQL 분석 수행
+    for language in languages:
+        os.makedirs(f'codeql-db/{language}', exist_ok=True)
+        
+        # 언어별 쿼리 경로 설정
+        query_paths = {
+            'python': 'codeql-repo/python/ql/src/Security',
+            'java': 'codeql-repo/java/ql/src/Security',
+            'javascript': 'codeql-repo/javascript/ql/src/Security',
+            'go': 'codeql-repo/go/ql/src/Security'
+        }
+        
+        if language not in query_paths:
+            raise ValueError(f"Unsupported language: {language}")
+        
+        # CodeQL 데이터베이스 생성
+        subprocess.run([
+            'codeql', 'database', 'create', f'codeql-db/{language}/{source_root}',
+            '--language=' + language, '--source-root', source_root, '--overwrite'
+        ], check=True)
 
-    os.makedirs('results', exist_ok=True)
-    subprocess.run([
-        'codeql', 'database', 'analyze', f'codeql-db/{source_root}',
-        'codeql-repo/python/ql/src/Security',
-        '--format=csv', '--output=results/results.csv'
-    ], check=True)
+        # 결과 디렉토리 생성
+        os.makedirs(f'results/{language}', exist_ok=True)
+
+        # CodeQL 분석 및 결과 저장
+        subprocess.run([
+            'codeql', 'database', 'analyze', f'codeql-db/{language}/{source_root}',
+            query_paths[language],  # 언어별 쿼리 경로 선택
+            '--format=csv', '--output', f'results/{language}/results.csv'
+        ], check=True)
 
 def sbom_analyze(source_root):
     os.makedirs('sbom', exist_ok=True)
     sbom_path = f'sbom/{source_root}_sbom.json'
 
-    # Syft 명령 실행
+    # Syft 명령 실행 (디렉토리 전체를 대상으로 SBOM 생성)
     subprocess.run(['syft', f'dir:{source_root}', '-o', f'json={sbom_path}'], check=True)
 
     sbom_results_path = f'sbom/{source_root}_grype_results.json'
@@ -57,24 +75,27 @@ def get_fix_url(cve_id):
 
 @app.route('/')
 def display_results():
-    # Parse CodeQL Results
-    codeql_results_path = 'results/results.csv'
+    # 여러 언어에 대한 CodeQL 결과 처리
     codeql_vulnerabilities = []
-    with open(codeql_results_path, 'r') as file:
-        reader = csv.reader(file)
-        for row in reader:
-            if len(row) >= 6:  # Ensure there are enough columns
-                # CWE ID 추가 및 가이드라인 URL 조회
-                cwe_id = row[0].split(" ")[0]  # 예: "CWE-79" 형태로 추출
-                guideline_url = get_guideline_url(cwe_id)
-                codeql_vulnerabilities.append({
-                    "vuln_name": row[0],
-                    "vuln_description": row[1],
-                    "file": row[4],
-                    "line": row[5],
-                    "cwe_id": cwe_id,
-                    "guideline_url": guideline_url,
-                })
+    languages = ['python', 'java', 'javascript', 'go']
+    
+    for language in languages:
+        codeql_results_path = f'results/{language}/results.csv'
+        with open(codeql_results_path, 'r') as file:
+            reader = csv.reader(file)
+            for row in reader:
+                if len(row) >= 6:
+                    cwe_id = row[0].split(" ")[0]  # 예: "CWE-79" 형태로 추출
+                    guideline_url = get_guideline_url(cwe_id)
+                    codeql_vulnerabilities.append({
+                        "vuln_name": row[0],
+                        "vuln_description": row[1],
+                        "file": row[4],
+                        "line": row[5],
+                        "cwe_id": cwe_id,
+                        "guideline_url": guideline_url,
+                        "language": language  # 언어 추가
+                    })
 
     # Parse SBOM Results
     sbom_results_path = 'sbom/test_code_grype_results.json'
@@ -105,9 +126,10 @@ def main(argv):
         sys.exit()
 
     source_root = argv[argv.index('-s') + 1]
+    languages = ['python', 'java', 'javascript', 'go']  # 예시로 여러 언어 지원
 
     if '-a' in argv or '--analyze' in argv:
-        codeql_analyze(source_root)
+        codeql_analyze(source_root, languages)
 
     if '-sbom' in argv:
         sbom_analyze(source_root)

@@ -1,0 +1,1 @@
+{"languages":{"python":{"displayName":"Python","files":["insecure_file.py","vulnerable_web.py","vulnerable_code.py"],"linesOfCode":19,"name":"python"},"java":{"displayName":"Java/Kotlin","files":["src/main/java/TestApp.java"],"linesOfCode":17,"name":"java"}}}
