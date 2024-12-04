@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block title %}SBOM Details{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>SBOM Analysis Details</h2>
+    {% for package, vulnerabilities in sbom_vulnerabilities.items() %}
+    <div class="card">
+        <h3>Package: {{ package }}</h3>
+        {% for vuln in vulnerabilities %}
+        <div class="vuln-detail">
+            <h4>CVE ID: <a href="{{ vuln.fix_url }}" target="_blank">{{ vuln.cve }}</a></h4>
+            <p><strong>Severity:</strong> <span class="severity-{{ vuln.severity | lower }}">{{ vuln.severity }}</span></p>
+            <p><strong>Fix URL:</strong> <a href="{{ vuln.fix_url }}" target="_blank">Fix this Vulnerability</a></p>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

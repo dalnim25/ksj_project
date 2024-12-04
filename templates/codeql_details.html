@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block title %}CodeQL Analysis Details{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>CodeQL Analysis Details</h2>
+    {% for file, vulnerabilities in codeql_vulnerabilities.items() %}
+    <div class="card">
+        <!-- 카드 상단에 검은색 배경과 파일 이름 추가 -->
+        <h3>File: {{ file }}</h3>
+        
+        {% for vuln in vulnerabilities %}
+        <div class="vuln-detail">
+            <h4>Vulnerability Name: {{ vuln.cwe_id }}</h4> <!-- Simplified CWE ID -->
+            <p><strong>Description:</strong> {{ vuln.vuln_description }}</p>
+            <p><strong>Line:</strong> {{ vuln.line }}</p>
+            <p><strong>Secure Coding Tip:</strong> <a href="{{ vuln.guideline_url }}" target="_blank">View Guideline</a></p>
+
+            <!-- Code Block with Line Numbers and Hover Highlighting for Vulnerable Code -->
+            <div class="code-block">
+                <pre><code>{{ vuln.code | safe }}</code></pre>
+            </div>
+        </div>
+        <hr>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

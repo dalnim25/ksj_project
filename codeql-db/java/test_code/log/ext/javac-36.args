@@ -1,0 +1,16 @@
+-Xprefer:source
+-d
+/Users/haeirn/Documents/devsecops_project/test_code/target/classes
+-classpath
+/Users/haeirn/Documents/devsecops_project/test_code/target/classes:
+-sourcepath
+/Users/haeirn/Documents/devsecops_project/test_code/src/main/java:/Users/haeirn/Documents/devsecops_project/test_code/target/generated-sources/annotations:
+-s
+/Users/haeirn/Documents/devsecops_project/test_code/target/generated-sources/annotations
+-g
+-target
+17
+-source
+17
+-XDuseUnsharedTable=true
+/Users/haeirn/Documents/devsecops_project/test_code/src/main/java/TestApp.java

@@ -1,0 +1,144 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header nav a {
+    color: #fff;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    padding: 20px;
+    margin: 20px auto;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 카드 전체 스타일 */
+.card {
+    margin-bottom: 20px;
+    padding: 0;
+    background-color: #f9f9f9; /* 카드 배경 색상 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    overflow: hidden;  /* 카드 안의 내용이 잘리지 않도록 처리 */
+}
+
+.card h3 {
+    background: linear-gradient(to right, #333, #666);  /* 그라디언트 배경 */
+    color: #fff;
+    padding: 15px 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);  /* 텍스트에 그림자 추가 */
+    margin: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 10px 10px 0 0;  /* 상단 둥근 모서리 */
+    transition: background 0.3s ease;  /* 배경 변화 시 애니메이션 */
+}
+
+.vuln-detail {
+    padding: 20px;  /* 각 항목의 여백 */
+    margin-bottom: 30px;  /* 항목 사이 여백 */
+}
+
+h4 {
+    color: #444;
+    margin-top: 10px;
+}
+
+.severity-high {
+    color: red;
+    font-weight: bold;
+}
+
+.severity-medium {
+    color: orange;
+    font-weight: bold;
+}
+
+.severity-low {
+    color: green;
+    font-weight: bold;
+}
+
+/* Code block styling with hover effect */
+/* 기본 코드 블록 스타일 */
+.code-block {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    line-height: 1.4;
+    border: 1px solid #444;
+    display: flex;
+    flex-direction: column;
+}
+
+.line-number {
+    color: #888;
+    font-size: 14px;
+    padding-right: 10px;
+    display: inline-block;
+    width: 40px;  /* 라인 번호의 너비 고정 */
+    text-align: right;
+    margin-left: 10px;
+}
+
+/* Highlighted code block with hover effect */
+.highlight {
+    background-color: yellow;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect on highlighted code only */
+.highlight:hover {
+    background-color: #ffcc00;
+    cursor: pointer;
+    transform: scale(1.2); /* 코드 줄을 살짝 확대 */
+}
+
+/* Styling for the Vulnerability Name */
+.vuln-detail h4 {
+    margin-top: 20px;
+    color: #333;
+    font-weight: bold;
+}
+
+
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #333;
+    color: #fff;
+}
+

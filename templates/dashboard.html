@@ -1,0 +1,57 @@
+{% extends 'layout.html' %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="container">
+    <h2>Dashboard</h2>
+
+    <!-- CodeQL Analysis Section -->
+    <div class="card">
+        <h3>CodeQL Analysis</h3>
+        <p>Total Vulnerabilities: {{ codeql_categorized_vulns['high'] | length + codeql_categorized_vulns['medium'] | length + codeql_categorized_vulns['low'] | length }}</p>
+        <h4>High</h4>
+        <ul>
+            {% for vuln in codeql_categorized_vulns['high'] %}
+            <li>{{ vuln.vuln_name }} (File: {{ vuln.file }}, Line: {{ vuln.line }})</li>
+            {% endfor %}
+        </ul>
+        <h4>Medium</h4>
+        <ul>
+            {% for vuln in codeql_categorized_vulns['medium'] %}
+            <li>{{ vuln.vuln_name }} (File: {{ vuln.file }}, Line: {{ vuln.line }})</li>
+            {% endfor %}
+        </ul>
+        <h4>Low</h4>
+        <ul>
+            {% for vuln in codeql_categorized_vulns['low'] %}
+            <li>{{ vuln.vuln_name }} (File: {{ vuln.file }}, Line: {{ vuln.line }})</li>
+            {% endfor %}
+        </ul>
+        <a href="/codeql-details">View CodeQL Details</a>
+    </div>
+
+    <!-- SBOM Analysis Section -->
+    <div class="card">
+        <h3>SBOM Analysis</h3>
+        <p>Total Vulnerabilities: {{ sbom_categorized_vulns['high'] | length + sbom_categorized_vulns['medium'] | length + sbom_categorized_vulns['low'] | length }}</p>
+        <h4>High</h4>
+        <ul>
+            {% for vuln in sbom_categorized_vulns['high'] %}
+            <li>{{ vuln.package }} - {{ vuln.cve }}</li>
+            {% endfor %}
+        </ul>
+        <h4>Medium</h4>
+        <ul>
+            {% for vuln in sbom_categorized_vulns['medium'] %}
+            <li>{{ vuln.package }} - {{ vuln.cve }}</li>
+            {% endfor %}
+        </ul>
+        <h4>Low</h4>
+        <ul>
+            {% for vuln in sbom_categorized_vulns['low'] %}
+            <li>{{ vuln.package }} - {{ vuln.cve }}</li>
+            {% endfor %}
+        </ul>
+        <a href="/sbom-details">View SBOM Details</a>
+    </div>
+</div>
+{% endblock %}

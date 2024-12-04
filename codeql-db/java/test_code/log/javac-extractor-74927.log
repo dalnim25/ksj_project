@@ -1,0 +1,17 @@
+[2024-12-04 21:51:11] [javac-extractor-74927] Starting extraction for:
+                                              sun.java.command=com.semmle.extractor.java.JavaExtractor --jdk-version 17 --javac-args @@@/Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/log/ext/javac-37.args
+                                              user.dir=/Users/haeirn/Documents/devsecops_project/test_code
+[2024-12-04 21:51:11] [javac-extractor-74927] Compilation name /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/trap/java/diagnostics/diagnostic.trap.gz
+[2024-12-04 21:51:11] [javac-extractor-74927] [WARN] Appending source destination directory /Users/haeirn/Documents/devsecops_project/test_code/target/generated-sources/annotations to sourcepath
+[2024-12-04 21:51:11] [javac-extractor-74927] Annotation processor class 'lombok.launch.AnnotationProcessorHider$AnnotationProcessor' initialized.
+[2024-12-04 21:51:11] [javac-extractor-74927] Annotation processor class 'lombok.launch.AnnotationProcessorHider$ClaimingProcessor' initialized.
+[2024-12-04 21:51:11] [javac-extractor-74927] Processing file /Users/haeirn/Documents/devsecops_project/test_code/src/main/java/TestApp.java
+[2024-12-04 21:51:12] [javac-extractor-74927] Processing module java.base
+[2024-12-04 21:51:12] [javac-extractor-74927] Processing module java.sql
+[2024-12-04 21:51:12] [javac-extractor-74927] Processing module java.xml
+[2024-12-04 21:51:12] [javac-extractor-74927] Processing module java.logging
+[2024-12-04 21:51:12] [javac-extractor-74927] Javac init time: 0.5s
+[2024-12-04 21:51:12] [javac-extractor-74927] Javac attr time: 0.0s
+[2024-12-04 21:51:12] [javac-extractor-74927] Extractor time: 1.1s
+[2024-12-04 21:51:12] [javac-extractor-74927] Other time: 0.1s
+[2024-12-04 21:51:12] [javac-extractor-74927] Total time: 1.8s

@@ -4,12 +4,13 @@ import json
 import sys
 import sqlite3
 from flask import Flask, render_template
+from collections import defaultdict
 
 app = Flask(__name__)
 
-# 소스 루트 디렉토리를 앱 전역에서 사용할 수 있도록 설정
-source_root = ""  # 기본값으로 빈 문자열 설정
+source_root = ""
 
+# Help Function
 def help():
     print('Usage: guidelineDB.py <command> <argument>...')
     print('Command options:')
@@ -19,171 +20,235 @@ def help():
     print('\t-sbom\t\t\tRun SBOM generation and vulnerability analysis.')
     print('\t-g, --guideline\t\tShow analysis results and generate secure coding guidelines.')
 
+# CodeQL Analysis
 def codeql_analyze(source_root, languages):
     for language in languages:
         os.makedirs(f'codeql-db/{language}', exist_ok=True)
-
         query_paths = {
             'python': 'codeql-repo/python/ql/src/Security',
             'java': 'codeql-repo/java/ql/src/Security',
             'javascript': 'codeql-repo/javascript/ql/src/Security',
         }
-
         if language not in query_paths:
             raise ValueError(f"Unsupported language: {language}")
-
-        # 이전 분석 결과가 있다면 삭제
         result_path = f'results/{language}/results.sarif'
         if os.path.exists(result_path):
             os.remove(result_path)
-
-        # CodeQL 분석 실행
         subprocess.run([
             'codeql', 'database', 'create', f'codeql-db/{language}/{source_root}',
             '--language=' + language, '--source-root', source_root, '--overwrite'
         ], check=True)
-
         os.makedirs(f'results/{language}', exist_ok=True)
-
-        # 새로 분석하여 결과 저장
         subprocess.run([
             'codeql', 'database', 'analyze', f'codeql-db/{language}/{source_root}',
             query_paths[language], '--format=sarif-latest', '--output', result_path
         ], check=True)
 
+# SBOM Analysis
 def sbom_analyze(source_root):
     os.makedirs('sbom', exist_ok=True)
-
-    # 이전 SBOM 결과가 있으면 삭제
     sbom_path = f'sbom/{source_root}_sbom.json'
     if os.path.exists(sbom_path):
         os.remove(sbom_path)
-        
     sbom_results_path = f'sbom/{source_root}_grype_results.json'
     if os.path.exists(sbom_results_path):
         os.remove(sbom_results_path)
-
-    # SBOM 파일 생성
     subprocess.run(['syft', f'dir:{source_root}', '-o', f'json={sbom_path}'], check=True)
-
-    # SBOM 취약점 분석
     subprocess.run(['grype', f'sbom:{sbom_path}', '-o', f'json={sbom_results_path}'], check=True)
 
+# Secure Coding Guideline URL
 def get_guideline_url(cwe_id):
     conn = sqlite3.connect("securecoding_guideline.db")
     cur = conn.cursor()
-
-    # 입력값 정규화: 소문자 변환 + 하이픈과 공백 제거
     normalized_cwe_id = cwe_id.replace("js/", "").replace("java/", "").replace("py/", "").replace("-", "").replace(" ", "").strip().lower()
-    print(f"Normalized CWE ID for DB search: {normalized_cwe_id}")
-
-    # 데이터베이스 검색
     cur.execute("SELECT guideline FROM vulnerabilities WHERE vuln_name = ?", (normalized_cwe_id,))
     result = cur.fetchone()
-
     conn.close()
+    return result[0] if result else "No guideline available"
 
-    if result:
-        print(f"Found guideline: {result[0]}")
-        return result[0]
-    else:
-        print(f"No guideline found for: {normalized_cwe_id}")
-        return "No guideline available"
-
-
+# Fix URL
 def get_fix_url(cve_id):
     return f"https://nvd.nist.gov/vuln/detail/{cve_id}"
 
-@app.route('/')
-def display_results():
-    global source_root  # 전역 변수로 source_root 사용
-
-    codeql_vulnerabilities = []
-    languages = ['python', 'java', 'javascript']
-    
-    for language in languages:
-        codeql_results_path = f'results/{language}/results.sarif'  
-        if not os.path.exists(codeql_results_path):
-            continue  
-
-        with open(codeql_results_path, 'r') as file:
-            data = json.load(file)  
-            for result in data['runs'][0]['results']:
-                cwe_id = result.get('ruleId', 'Unknown')  
-                if 'properties' in result:
-                    cwe_id = result['properties'].get('cwe', cwe_id)
-
-                guideline_url = get_guideline_url(cwe_id)
-
-                # 취약점 정보 저장
-                vuln = {
-                    "vuln_name": result.get('message', {}).get('text', 'N/A'),
-                    "vuln_description": result.get('message', {}).get('text', 'N/A'),
-                    "file": result.get('locations', [{}])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'N/A'),
-                    "line": result.get('locations', [{}])[0].get('physicalLocation', {}).get('region', {}).get('startLine', 'N/A'),
-                    "cwe_id": cwe_id,  
-                    "guideline_url": guideline_url,
-                    "language": language,
-                    "code": get_code_from_file(result.get('locations', [{}])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'N/A'), result.get('locations', [{}])[0].get('physicalLocation', {}).get('region', {}).get('startLine', 'N/A'), source_root)  # 상대경로로 코드 읽기
-                }
-
-                if vuln not in codeql_vulnerabilities:
-                    codeql_vulnerabilities.append(vuln)
-
-    sbom_results_path = 'sbom/test_code_grype_results.json'
-    sbom_vulnerabilities = []
-    with open(sbom_results_path, 'r') as file:
-        sbom_data = json.load(file)
-        sbom_vulnerabilities = [
-            {
-                "package": match["artifact"]["name"],
-                "cve": match["vulnerability"]["id"],
-                "severity": match["vulnerability"]["severity"],
-                "fix_url": get_fix_url(match["vulnerability"]["id"]),
-            }
-            for match in sbom_data["matches"]
-        ]
-
-    return render_template('results.html',
-                           codeql_vulnerabilities=codeql_vulnerabilities,
-                           sbom_vulnerabilities=sbom_vulnerabilities)
-
-def get_code_from_file(file_path, line_number, source_root):
+# Highlight Vulnerable Code
+def get_code_from_file(file_path, line_number, source_root, context_lines=3):
     try:
-        # 소스 루트 디렉토리와 결합하여 상대 경로를 처리
-        abs_file_path = os.path.join(source_root, file_path.lstrip('/'))  # 상대 경로를 절대 경로로 변환
-        print(f"Reading file: {abs_file_path}")  # 디버깅 용도, 확인할 경로 출력
-        
+        abs_file_path = os.path.join(source_root, file_path.lstrip('/'))
         with open(abs_file_path, 'r') as f:
             lines = f.readlines()
-            return lines[int(line_number) - 1]  # 1-based line number to 0-based index
+
+        start_line = max(0, line_number - context_lines - 1)
+        end_line = min(len(lines), line_number + context_lines)
+
+        highlighted_code = []
+        for i in range(start_line, end_line):
+            line_number_display = i + 1  # 코드 라인 번호
+            if i == line_number - 1:  # 하이라이팅할 줄
+                highlighted_code.append(f'<div class="line-number">{line_number_display}</div><span class="highlight">{lines[i].strip()}</span>')
+            else:
+                highlighted_code.append(f'<div class="line-number">{line_number_display}</div>{lines[i].strip()}')
+
+        return '\n'.join(highlighted_code)
     except Exception as e:
-        print(f"Error: {e}")
         return f"Error reading file: {e}"
 
-def main(argv):
-    global source_root  # 전역 변수로 source_root 설정
+    
+# 취약점 유형별 기본 위험도 매핑 (OWASP & 행안부 기준)
+vulnerability_risk_mapping = {
+    "cross-site scripting": "high",
+    "sql injection": "high",
+    "broken access control": "high",
+    "cryptographic failure": "high",
+    "insecure design": "medium",
+    "security misconfiguration": "medium",
+    "vulnerable and outdated components": "medium",
+    "hardcoded secret": "medium",
+    "server-side request forgery": "high",
+    "directory traversal": "high",
+    "weak cryptography": "medium",
+}
 
+# CodeQL Vulnerabilities
+def get_codeql_vulnerabilities():
+    from collections import defaultdict
+
+    codeql_vulnerabilities = defaultdict(list)
+    languages = ['python', 'java', 'javascript']
+
+    for language in languages:
+        codeql_results_path = f'results/{language}/results.sarif'
+        if not os.path.exists(codeql_results_path):
+            continue
+
+        with open(codeql_results_path, 'r') as file:
+            data = json.load(file)
+            seen_vulnerabilities = set()
+
+            for result in data['runs'][0]['results']:
+                # 파일 경로와 라인 정보
+                file_path = result.get('locations', [{}])[0].get('physicalLocation', {}).get('artifactLocation', {}).get('uri', 'N/A')
+                line_number = result.get('locations', [{}])[0].get('physicalLocation', {}).get('region', {}).get('startLine', 'N/A')
+                vuln_name = result.get('message', {}).get('text', 'N/A')
+
+                # security-severity 확인
+                severity_score = result.get('properties', {}).get('security-severity', 0)
+                if severity_score == 0:
+                    print(f"Warning: Missing 'security-severity' for {vuln_name} in {file_path}")
+
+                # SARIF 점수 기반으로 위험도 분류
+                if severity_score >= 8.0:
+                    severity = "high"
+                elif severity_score >= 4.0:
+                    severity = "medium"
+                else:
+                    severity = "low"
+
+                unique_key = (file_path, line_number, vuln_name)
+                if unique_key in seen_vulnerabilities:
+                    continue
+                seen_vulnerabilities.add(unique_key)
+
+                vuln = {
+                    "vuln_name": vuln_name,
+                    "vuln_description": result.get('message', {}).get('text', 'N/A'),
+                    "file": file_path,
+                    "line": line_number,
+                    "cwe_id": result.get('ruleId', 'Unknown'),
+                    "guideline_url": get_guideline_url(result.get('ruleId', 'Unknown')),
+                    "language": language,
+                    "severity": severity,
+                    "code": get_code_from_file(file_path, int(line_number), source_root),
+                }
+
+                codeql_vulnerabilities[file_path].append(vuln)
+
+    return codeql_vulnerabilities
+
+# Categorize CodeQL Vulnerabilities
+def categorize_codeql_vulnerabilities(vulnerabilities):
+    categorized_vulnerabilities = {"high": [], "medium": [], "low": []}
+    for file, vuln_list in vulnerabilities.items():
+        for vuln in vuln_list:
+            severity = vuln.get("vuln_description", "").lower()
+            if "critical" in severity or "high" in severity:
+                categorized_vulnerabilities["high"].append(vuln)
+            elif "medium" in severity:
+                categorized_vulnerabilities["medium"].append(vuln)
+            else:
+                categorized_vulnerabilities["low"].append(vuln)
+    return categorized_vulnerabilities
+
+# SBOM Vulnerabilities
+def get_sbom_vulnerabilities():
+    sbom_vulnerabilities = defaultdict(list)
+    sbom_results_path = 'sbom/test_code_grype_results.json'
+    if os.path.exists(sbom_results_path):
+        with open(sbom_results_path, 'r') as file:
+            sbom_data = json.load(file)
+            seen_vulnerabilities = set()
+            for match in sbom_data["matches"]:
+                package = match["artifact"]["name"]
+                cve_id = match["vulnerability"]["id"]
+                severity = match["vulnerability"]["severity"]
+                fix_url = get_fix_url(cve_id)
+                unique_key = (package, cve_id)
+                if unique_key in seen_vulnerabilities:
+                    continue
+                seen_vulnerabilities.add(unique_key)
+                vuln = {"package": package, "cve": cve_id, "severity": severity, "fix_url": fix_url}
+                sbom_vulnerabilities[package].append(vuln)
+    return sbom_vulnerabilities
+
+# Categorize SBOM Vulnerabilities
+def categorize_sbom_vulnerabilities(vulnerabilities):
+    categorized_vulnerabilities = {"high": [], "medium": [], "low": []}
+    for package, vuln_list in vulnerabilities.items():
+        for vuln in vuln_list:
+            severity = vuln.get("severity", "").lower()
+            if severity == "high":
+                categorized_vulnerabilities["high"].append(vuln)
+            elif severity == "medium":
+                categorized_vulnerabilities["medium"].append(vuln)
+            else:
+                categorized_vulnerabilities["low"].append(vuln)
+    return categorized_vulnerabilities
+
+@app.route('/')
+def dashboard():
+    codeql_vulns = get_codeql_vulnerabilities()
+    sbom_vulns = get_sbom_vulnerabilities()
+    categorized_codeql_vulns = categorize_codeql_vulnerabilities(codeql_vulns)
+    categorized_sbom_vulns = categorize_sbom_vulnerabilities(sbom_vulns)
+    return render_template(
+        'dashboard.html',
+        codeql_categorized_vulns=categorized_codeql_vulns,
+        sbom_categorized_vulns=categorized_sbom_vulns
+    )
+
+@app.route('/codeql-details')
+def codeql_details():
+    return render_template('codeql_details.html', codeql_vulnerabilities=get_codeql_vulnerabilities())
+
+@app.route('/sbom-details')
+def sbom_details():
+    return render_template('sbom_details.html', sbom_vulnerabilities=get_sbom_vulnerabilities())
+
+def main(argv):
+    global source_root
     if '-h' in argv or '--help' in argv:
         help()
         sys.exit()
-
     if '-s' not in argv:
         print("Missing argument: -s or --source-root")
         sys.exit()
-
     source_root = argv[argv.index('-s') + 1]
-    #languages = ['python', 'java', 'javascript']  
-    languages = ['python','java','javascript'] 
-
+    languages = ['python', 'java', 'javascript']
     if '-a' in argv or '--analyze' in argv:
         codeql_analyze(source_root, languages)
-
     if '-sbom' in argv:
         sbom_analyze(source_root)
-
     if '-g' in argv or '--guideline' in argv:
-        app.run()
+        app.run(debug=True)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

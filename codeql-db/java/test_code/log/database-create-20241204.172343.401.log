@@ -1,0 +1,1207 @@
+[2024-12-04 17:23:43] This is codeql database create codeql-db/java/test_code --language=java --source-root test_code --overwrite
+[2024-12-04 17:23:43] Log file was started late.
+[2024-12-04 17:23:43] [PROGRESS] database create> Initializing database at /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code.
+[2024-12-04 17:23:43] Running plumbing command: codeql database init --overwrite --language=java --extractor-options-verbosity=1 --qlconfig-file=/Users/haeirn/Documents/devsecops_project/qlconfig.yml --source-root=/Users/haeirn/Documents/devsecops_project/test_code --allow-missing-source-root=false --allow-already-existing -- /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code
+[2024-12-04 17:23:43] Calling plumbing command: codeql resolve languages --extractor-options-verbosity=1 --format=betterjson
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Scanning for [codeql-extractor.yml] from /opt/homebrew/Caskroom/codeql/2.19.4/codeql/.codeqlmanifest.json
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/go/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/python/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/html/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/xml/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/properties/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/cpp/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/swift/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/csv/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/yaml/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/csharp/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/javascript/codeql-extractor.yml.
+[2024-12-04 17:23:43] [DETAILS] resolve languages> Parsing /opt/homebrew/Caskroom/codeql/2.19.4/codeql/ruby/codeql-extractor.yml.
+[2024-12-04 17:23:43] Plumbing command codeql resolve languages completed:
+                      {
+                        "aliases" : {
+                          "c" : "cpp",
+                          "c++" : "cpp",
+                          "c-c++" : "cpp",
+                          "c-cpp" : "cpp",
+                          "c#" : "csharp",
+                          "java-kotlin" : "java",
+                          "kotlin" : "java",
+                          "javascript-typescript" : "javascript",
+                          "typescript" : "javascript"
+                        },
+                        "extractors" : {
+                          "go" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/go",
+                              "extractor_options" : {
+                                "extract_tests" : {
+                                  "title" : "Whether to include Go test files in the CodeQL database.",
+                                  "description" : "A value indicating whether Go test files should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "extract_vendor_dirs" : {
+                                  "title" : "Whether to include Go vendor directories in the CodeQL database.",
+                                  "description" : "A value indicating whether Go vendor directories should be included in the CodeQL database. The default is 'false'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "python" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/python",
+                              "extractor_options" : {
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Python extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the CodeQL Python extractor.\nThe supported levels are (in order of increasing verbosity):\n\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "python_executable_name" : {
+                                  "title" : "Controls the name of the Python executable used by the Python extractor.",
+                                  "description" : "The Python extractor uses platform-dependent heuristics to determine the name of the Python executable to use. Specifying a value for this option overrides the name of the Python executable used by the extractor. Accepted values are py, python and python3. Use this setting with caution, the Python extractor requires Python 3 to run.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(py|python|python3)$"
+                                }
+                              }
+                            }
+                          ],
+                          "java" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/java",
+                              "extractor_options" : {
+                                "exclude" : {
+                                  "title" : "A glob excluding files from analysis.",
+                                  "description" : "A glob indicating what files to exclude from the analysis.\n",
+                                  "type" : "string"
+                                },
+                                "add_prefer_source" : {
+                                  "title" : "Whether to always prefer source files over class files.",
+                                  "description" : "A value indicating whether source files should be preferred over class files. If set to 'true', the extraction adds '-Xprefer:source' to the javac command line. If set to 'false', the extraction uses the default javac behavior ('-Xprefer:newer'). The default is 'true'.\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "buildless" : {
+                                  "title" : "Whether to use buildless (standalone) extraction (experimental).",
+                                  "description" : "A value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "html" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/html"
+                            }
+                          ],
+                          "xml" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/xml"
+                            }
+                          ],
+                          "properties" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/properties"
+                            }
+                          ],
+                          "cpp" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/cpp",
+                              "extractor_options" : {
+                                "scale_timeouts" : {
+                                  "title" : "Value to scale compiler introspection timeouts with",
+                                  "description" : "The extractor attempts to determine what compiler the source code being extracted is compiled with. To this end the extractor makes additional calls to the compiler, some of which are expected to return within a certain fixed time (either 10s or 15s). On some systems that are under high load this time might be too short, and can be scaled up using this option.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-9]+"
+                                },
+                                "log_verbosity" : {
+                                  "title" : "Verbosity of the extractor logging",
+                                  "description" : "Set the verbosity of the extractor logging to 'quiet' (0), 'normal' (1), 'chatty' (2), or 'noisy' (3). The default is 'normal'.\n",
+                                  "type" : "string",
+                                  "pattern" : "[0-3]"
+                                }
+                              }
+                            }
+                          ],
+                          "swift" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/swift"
+                            }
+                          ],
+                          "csv" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/csv"
+                            }
+                          ],
+                          "yaml" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/yaml"
+                            }
+                          ],
+                          "csharp" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/csharp",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'brotli' (the default, to write brotli-compressed TRAP), 'gzip', and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip|brotli)$"
+                                    }
+                                  }
+                                },
+                                "buildless" : {
+                                  "title" : "DEPRECATED - Whether to use buildless (standalone) extraction.",
+                                  "description" : "DEPRECATED: Use `--build-mode none` instead.\nA value indicating, which type of extraction the autobuilder should perform. If 'true', then the standalone extractor will be used, otherwise tracing extraction will be performed. The default is 'false'. Note that buildless extraction will generally yield less accurate analysis results, and should only be used in cases where it is not possible to build the code (for example if it uses inaccessible dependencies).\n",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                },
+                                "logging" : {
+                                  "title" : "Options pertaining to logging.",
+                                  "description" : "Options pertaining to logging.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "verbosity" : {
+                                      "title" : "Extractor logging verbosity level.",
+                                      "description" : "Controls the level of verbosity of the extractor. The supported levels are (in order of increasing verbosity):\n  - off\n  - errors\n  - warnings\n  - info or progress\n  - debug or progress+\n  - trace or progress++\n  - progress+++\n",
+                                      "type" : "string",
+                                      "pattern" : "^(off|errors|warnings|(info|progress)|(debug|progress\\+)|(trace|progress\\+\\+)|progress\\+\\+\\+)$"
+                                    }
+                                  }
+                                },
+                                "binlog" : {
+                                  "title" : "Binlog",
+                                  "description" : "[EXPERIMENTAL] The value is a path to the MsBuild binary log file that should be extracted. This option only works when `--build-mode none` is also specified.\n",
+                                  "type" : "array"
+                                }
+                              }
+                            }
+                          ],
+                          "javascript" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/javascript",
+                              "extractor_options" : {
+                                "skip_types" : {
+                                  "title" : "Skip type extraction for TypeScript",
+                                  "description" : "Whether to skip the extraction of types in a TypeScript application",
+                                  "type" : "string",
+                                  "pattern" : "^(false|true)$"
+                                }
+                              }
+                            }
+                          ],
+                          "ruby" : [
+                            {
+                              "extractor_root" : "/opt/homebrew/Caskroom/codeql/2.19.4/codeql/ruby",
+                              "extractor_options" : {
+                                "trap" : {
+                                  "title" : "Options pertaining to TRAP.",
+                                  "description" : "Options pertaining to TRAP.",
+                                  "type" : "object",
+                                  "properties" : {
+                                    "compression" : {
+                                      "title" : "Controls compression for the TRAP files written by the extractor.",
+                                      "description" : "This option is only intended for use in debugging the extractor. Accepted values are 'gzip' (the default, to write gzip-compressed TRAP) and 'none' (to write uncompressed TRAP).\n",
+                                      "type" : "string",
+                                      "pattern" : "^(none|gzip)$"
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+[2024-12-04 17:23:43] [PROGRESS] database init> Calculating baseline information in /Users/haeirn/Documents/devsecops_project/test_code
+[2024-12-04 17:23:43] [SPAMMY] database init> Ignoring the following directories when processing baseline information: .git, .hg, .svn.
+[2024-12-04 17:23:43] [DETAILS] database init> Running command in /Users/haeirn/Documents/devsecops_project/test_code: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/tools/osx64/scc --by-file --exclude-dir .git,.hg,.svn --format json --no-large --no-min .
+[2024-12-04 17:23:43] Using configure-baseline script /opt/homebrew/Caskroom/codeql/2.19.4/codeql/javascript/tools/configure-baseline.sh.
+[2024-12-04 17:23:43] [PROGRESS] database init> Running command in /Users/haeirn/Documents/devsecops_project/test_code: [/opt/homebrew/Caskroom/codeql/2.19.4/codeql/javascript/tools/configure-baseline.sh]
+[2024-12-04 17:23:43] [SPAMMY] database init> Found 3 baseline files for python.
+[2024-12-04 17:23:43] [SPAMMY] database init> Found 1 baseline files for java.
+[2024-12-04 17:23:43] [SPAMMY] database init> Found 1 baseline files for javascript.
+[2024-12-04 17:23:43] [PROGRESS] database init> Calculated baseline information for languages: java, javascript, python (67ms).
+[2024-12-04 17:23:43] [PROGRESS] database init> Resolving extractor java.
+[2024-12-04 17:23:43] [DETAILS] database init> Found candidate extractor root for java: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java.
+[2024-12-04 17:23:43] [PROGRESS] database init> Successfully loaded extractor Java/Kotlin (java) from /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java.
+[2024-12-04 17:23:43] [SPAMMY] database init> Determining macOS System Integrity Protection status...
+[2024-12-04 17:23:43] [SPAMMY] database init> Running command [/usr/bin/csrutil, status].
+[2024-12-04 17:23:43] [SPAMMY] database init> SIP is enabled.
+[2024-12-04 17:23:43] [PROGRESS] database init> Created skeleton CodeQL database at /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code. This in-progress database is ready to be populated by an extractor.
+[2024-12-04 17:23:43] Plumbing command codeql database init completed.
+[2024-12-04 17:23:43] Using autobuild script /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/autobuild.sh.
+[2024-12-04 17:23:43] [DETAILS] database create> Detected autobuild command for Java/Kotlin: /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/autobuild.sh.
+[2024-12-04 17:23:43] [PROGRESS] database create> Running build command: [/opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/autobuild.sh]
+[2024-12-04 17:23:43] Running plumbing command: codeql database trace-command --working-dir=/Users/haeirn/Documents/devsecops_project/test_code --index-traceless-dbs --no-db-cluster -- /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/autobuild.sh
+[2024-12-04 17:23:44] [PROGRESS] database trace-command> Running command in /Users/haeirn/Documents/devsecops_project/test_code: [/opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/autobuild.sh]
+[2024-12-04 17:23:46] [build-stdout] [2024-12-04 17:23:46] Build directory is .
+[2024-12-04 17:23:46] [build-stdout] [2024-12-04 17:23:46] [autobuild] > mvn clean package -f pom.xml -B -V -e -Dfindbugs.skip -Dcheckstyle.skip -Dpmd.skip=true -Dspotbugs.skip -Denforcer.skip -Dmaven.javadoc.skip -DskipTests -Dmaven.test.skip.exec -Dlicense.skip=true -Drat.skip=true -Dspotless.check.skip=true
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] Apache Maven 3.9.9 (8e8579a9e76f7d015ee5ec7bfcdc97d260186937)
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] Maven home: /opt/homebrew/Cellar/maven/3.9.9/libexec
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] Java version: 17.0.13, vendor: Homebrew, runtime: /opt/homebrew/Cellar/openjdk@17/17.0.13/libexec/openjdk.jdk/Contents/Home
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] Default locale: ko_KR, platform encoding: UTF-8
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] OS name: "mac os x", version: "14.6.1", arch: "aarch64", family: "mac"
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] Error stacktraces are turned on.
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] Scanning for projects...
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] 
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] -----------------------< com.example:test-code >------------------------
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] Building test-code 1.0-SNAPSHOT
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO]   from pom.xml
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] --------------------------------[ jar ]---------------------------------
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] 
+[2024-12-04 17:23:49] [build-stdout] [2024-12-04 17:23:49] [autobuild] [INFO] --- clean:3.2.0:clean (default-clean) @ test-code ---
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] Deleting /Users/haeirn/Documents/devsecops_project/test_code/target
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] 
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] --- resources:3.3.1:resources (default-resources) @ test-code ---
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] skip non existing resourceDirectory /Users/haeirn/Documents/devsecops_project/test_code/src/main/resources
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] 
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] --- compiler:3.13.0:compile (default-compile) @ test-code ---
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] Recompiling the module because of changed source code.
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [WARNING] File encoding has not been set, using platform encoding UTF-8, i.e. build is platform dependent!
+[2024-12-04 17:23:50] [build-stdout] [2024-12-04 17:23:50] [autobuild] [INFO] Compiling 1 source file with javac [debug target 17] to target/classes
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] 
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] --- resources:3.3.1:testResources (default-testResources) @ test-code ---
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [WARNING] Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] skip non existing resourceDirectory /Users/haeirn/Documents/devsecops_project/test_code/src/test/resources
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] 
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ test-code ---
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] No sources to compile
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] 
+[2024-12-04 17:23:52] [build-stdout] [2024-12-04 17:23:52] [autobuild] [INFO] --- surefire:3.2.5:test (default-test) @ test-code ---
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [WARNING]  Parameter 'skipExec' (user property 'maven.test.skip.exec') is deprecated: Use skipTests instead.
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] Tests are skipped.
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] 
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] --- jar:3.4.1:jar (default-jar) @ test-code ---
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] Building jar: /Users/haeirn/Documents/devsecops_project/test_code/target/test-code-1.0-SNAPSHOT.jar
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] ------------------------------------------------------------------------
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] BUILD SUCCESS
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] ------------------------------------------------------------------------
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] Total time:  3.537 s
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] Finished at: 2024-12-04T17:23:53+09:00
+[2024-12-04 17:23:53] [build-stdout] [2024-12-04 17:23:53] [autobuild] [INFO] ------------------------------------------------------------------------
+[2024-12-04 17:23:53] Plumbing command codeql database trace-command completed.
+[2024-12-04 17:23:53] [PROGRESS] database create> Finalizing database at /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code.
+[2024-12-04 17:23:53] Running plumbing command: codeql database finalize --no-db-cluster -- /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code
+[2024-12-04 17:23:53] Using pre-finalize script /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/pre-finalize.sh.
+[2024-12-04 17:23:53] [PROGRESS] database finalize> Running pre-finalize script /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/pre-finalize.sh in /Users/haeirn/Documents/devsecops_project/test_code.
+[2024-12-04 17:23:53] Running plumbing command: codeql database trace-command --working-dir=/Users/haeirn/Documents/devsecops_project/test_code --no-tracing -- /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code /opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/pre-finalize.sh
+[2024-12-04 17:23:53] [PROGRESS] database trace-command> Running command in /Users/haeirn/Documents/devsecops_project/test_code: [/opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/tools/pre-finalize.sh]
+[2024-12-04 17:23:54] [build-stderr] Scanning for files in /Users/haeirn/Documents/devsecops_project/test_code...
+[2024-12-04 17:23:54] [build-stderr] /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code: Indexing files in in /Users/haeirn/Documents/devsecops_project/test_code...
+[2024-12-04 17:23:54] [build-stderr] Running command in /Users/haeirn/Documents/devsecops_project/test_code: [/opt/homebrew/Caskroom/codeql/2.19.4/codeql/xml/tools/index-files.sh, /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/working/files-to-index12256996195562514124.list]
+[2024-12-04 17:23:55] [build-stderr] Scanning for files in /Users/haeirn/Documents/devsecops_project/test_code...
+[2024-12-04 17:23:55] [build-stderr] /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code: Indexing files in in /Users/haeirn/Documents/devsecops_project/test_code...
+[2024-12-04 17:23:55] [build-stderr] Running command in /Users/haeirn/Documents/devsecops_project/test_code: [/opt/homebrew/Caskroom/codeql/2.19.4/codeql/properties/tools/index-files.sh, /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/working/files-to-index18431938520960377838.list]
+[2024-12-04 17:23:55] Plumbing command codeql database trace-command completed.
+[2024-12-04 17:23:55] [PROGRESS] database finalize> Running TRAP import for CodeQL database at /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code...
+[2024-12-04 17:23:55] Running plumbing command: codeql dataset import --dbscheme=/opt/homebrew/Caskroom/codeql/2.19.4/codeql/java/semmlecode.dbscheme -- /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/trap/java
+[2024-12-04 17:23:55] Clearing disk cache since the version file /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java/default/cache/version does not exist
+[2024-12-04 17:23:55] Tuple pool not found. Clearing relations with cached strings
+[2024-12-04 17:23:55] Trimming disk cache at /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java/default/cache in mode clear.
+[2024-12-04 17:23:55] Sequence stamp origin is -6109416449491208652
+[2024-12-04 17:23:55] Pausing evaluation to hard-clear memory at sequence stamp o+0
+[2024-12-04 17:23:55] Unpausing evaluation
+[2024-12-04 17:23:55] Pausing evaluation to quickly trim disk at sequence stamp o+1
+[2024-12-04 17:23:55] Unpausing evaluation
+[2024-12-04 17:23:55] Pausing evaluation to zealously trim disk at sequence stamp o+2
+[2024-12-04 17:23:55] Unpausing evaluation
+[2024-12-04 17:23:55] Trimming completed (3ms): Purged everything.
+[2024-12-04 17:23:55] Scanning for files in /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/trap/java
+[2024-12-04 17:23:55] Found 676 TRAP files (1.69 MiB)
+[2024-12-04 17:23:55] [PROGRESS] dataset import> Importing TRAP files
+[2024-12-04 17:23:55] Importing pom.xml.trap.gz (1 of 676)
+[2024-12-04 17:23:55] Importing TestApp.java.trap.gz (2 of 676)
+[2024-12-04 17:23:55] Importing pom.properties.trap.gz (3 of 676)
+[2024-12-04 17:23:55] Importing Closeable.members#61.0-1728568919000-java.trap.gz (4 of 676)
+[2024-12-04 17:23:55] Importing Console.members#61.0-1728568919000-java.trap.gz (5 of 676)
+[2024-12-04 17:23:55] Importing DataInput.members#61.0-1728568919000-java.trap.gz (6 of 676)
+[2024-12-04 17:23:55] Importing DataOutput.members#61.0-1728568919000-java.trap.gz (7 of 676)
+[2024-12-04 17:23:55] Importing File.members#61.0-1728568919000-java.trap.gz (8 of 676)
+[2024-12-04 17:23:55] Importing FileDescriptor.members#61.0-1728568919000-java.trap.gz (9 of 676)
+[2024-12-04 17:23:55] Importing FileFilter.members#61.0-1728568919000-java.trap.gz (10 of 676)
+[2024-12-04 17:23:55] Importing FileNotFoundException.members#61.0-1728568919000-java.trap.gz (11 of 676)
+[2024-12-04 17:23:55] Importing FilenameFilter.members#61.0-1728568919000-java.trap.gz (12 of 676)
+[2024-12-04 17:23:55] Importing FilterOutputStream.members#61.0-1728568919000-java.trap.gz (13 of 676)
+[2024-12-04 17:23:55] Importing Flushable.members#61.0-1728568919000-java.trap.gz (14 of 676)
+[2024-12-04 17:23:55] Importing IOException.members#61.0-1728568919000-java.trap.gz (15 of 676)
+[2024-12-04 17:23:55] Importing InputStream.members#61.0-1728568919000-java.trap.gz (16 of 676)
+[2024-12-04 17:23:55] Importing InvalidClassException.members#61.0-1728568919000-java.trap.gz (17 of 676)
+[2024-12-04 17:23:55] Importing InvalidObjectException.members#61.0-1728568919000-java.trap.gz (18 of 676)
+[2024-12-04 17:23:55] Importing NotActiveException.members#61.0-1728568919000-java.trap.gz (19 of 676)
+[2024-12-04 17:23:55] Importing ObjectInput.members#61.0-1728568919000-java.trap.gz (20 of 676)
+[2024-12-04 17:23:55] Importing ObjectInputFilter$FilterInfo.members#61.0-1728568919000-java.trap.gz (21 of 676)
+[2024-12-04 17:23:55] Importing ObjectInputFilter$Status.members#61.0-1728568919000-java.trap.gz (22 of 676)
+[2024-12-04 17:23:55] Importing ObjectInputFilter.members#61.0-1728568919000-java.trap.gz (23 of 676)
+[2024-12-04 17:23:55] Importing ObjectInputStream$GetField.members#61.0-1728568919000-java.trap.gz (24 of 676)
+[2024-12-04 17:23:55] Importing ObjectInputStream.members#61.0-1728568919000-java.trap.gz (25 of 676)
+[2024-12-04 17:23:55] Importing ObjectInputValidation.members#61.0-1728568919000-java.trap.gz (26 of 676)
+[2024-12-04 17:23:55] Importing ObjectOutput.members#61.0-1728568919000-java.trap.gz (27 of 676)
+[2024-12-04 17:23:55] Importing ObjectOutputStream$PutField.members#61.0-1728568919000-java.trap.gz (28 of 676)
+[2024-12-04 17:23:55] Importing ObjectOutputStream.members#61.0-1728568919000-java.trap.gz (29 of 676)
+[2024-12-04 17:23:55] Importing ObjectStreamClass$ClassDataSlot.members#61.0-1728568919000-java.trap.gz (30 of 676)
+[2024-12-04 17:23:55] Importing ObjectStreamClass.members#61.0-1728568919000-java.trap.gz (31 of 676)
+[2024-12-04 17:23:55] Importing ObjectStreamConstants.members#61.0-1728568919000-java.trap.gz (32 of 676)
+[2024-12-04 17:23:55] Importing ObjectStreamException.members#61.0-1728568919000-java.trap.gz (33 of 676)
+[2024-12-04 17:23:55] Importing ObjectStreamField.members#61.0-1728568919000-java.trap.gz (34 of 676)
+[2024-12-04 17:23:55] Importing OptionalDataException.members#61.0-1728568919000-java.trap.gz (35 of 676)
+[2024-12-04 17:23:55] Importing OutputStream.members#61.0-1728568919000-java.trap.gz (36 of 676)
+[2024-12-04 17:23:55] Importing PrintStream.members#61.0-1728568919000-java.trap.gz (37 of 676)
+[2024-12-04 17:23:55] Importing PrintWriter.members#61.0-1728568919000-java.trap.gz (38 of 676)
+[2024-12-04 17:23:55] Importing Reader.members#61.0-1728568919000-java.trap.gz (39 of 676)
+[2024-12-04 17:23:55] Importing Serializable.members#61.0-1728568919000-java.trap.gz (40 of 676)
+[2024-12-04 17:23:55] Importing SerializablePermission.members#61.0-1728568919000-java.trap.gz (41 of 676)
+[2024-12-04 17:23:55] Importing StreamCorruptedException.members#61.0-1728568919000-java.trap.gz (42 of 676)
+[2024-12-04 17:23:55] Importing SyncFailedException.members#61.0-1728568919000-java.trap.gz (43 of 676)
+[2024-12-04 17:23:55] Importing UnsupportedEncodingException.members#61.0-1728568919000-java.trap.gz (44 of 676)
+[2024-12-04 17:23:55] Importing Writer.members#61.0-1728568919000-java.trap.gz (45 of 676)
+[2024-12-04 17:23:55] Importing AbstractStringBuilder.members#61.0-1728568919000-java.trap.gz (46 of 676)
+[2024-12-04 17:23:55] Importing Appendable.members#61.0-1728568919000-java.trap.gz (47 of 676)
+[2024-12-04 17:23:55] Importing ArrayIndexOutOfBoundsException.members#61.0-1728568919000-java.trap.gz (48 of 676)
+[2024-12-04 17:23:55] Importing AutoCloseable.members#61.0-1728568919000-java.trap.gz (49 of 676)
+[2024-12-04 17:23:55] Importing Boolean.members#61.0-1728568919000-java.trap.gz (50 of 676)
+[2024-12-04 17:23:55] Importing CharSequence.members#61.0-1728568919000-java.trap.gz (51 of 676)
+[2024-12-04 17:23:55] Importing Character.members#61.0-1728568919000-java.trap.gz (52 of 676)
+[2024-12-04 17:23:55] Importing Class.members#61.0-1728568919000-java.trap.gz (53 of 676)
+[2024-12-04 17:23:55] Importing ClassFormatError.members#61.0-1728568919000-java.trap.gz (54 of 676)
+[2024-12-04 17:23:55] Importing ClassLoader.members#61.0-1728568919000-java.trap.gz (55 of 676)
+[2024-12-04 17:23:55] Importing ClassNotFoundException.members#61.0-1728568919000-java.trap.gz (56 of 676)
+[2024-12-04 17:23:55] Importing ClassValue$ClassValueMap.members#61.0-1728568919000-java.trap.gz (57 of 676)
+[2024-12-04 17:23:55] Importing ClassValue$Entry.members#61.0-1728568919000-java.trap.gz (58 of 676)
+[2024-12-04 17:23:55] Importing ClassValue$Identity.members#61.0-1728568919000-java.trap.gz (59 of 676)
+[2024-12-04 17:23:55] Importing ClassValue$Version.members#61.0-1728568919000-java.trap.gz (60 of 676)
+[2024-12-04 17:23:55] Importing ClassValue.members#61.0-1728568919000-java.trap.gz (61 of 676)
+[2024-12-04 17:23:55] Importing CloneNotSupportedException.members#61.0-1728568919000-java.trap.gz (62 of 676)
+[2024-12-04 17:23:55] Importing Cloneable.members#61.0-1728568919000-java.trap.gz (63 of 676)
+[2024-12-04 17:23:55] Importing Comparable.members#61.0-1728568919000-java.trap.gz (64 of 676)
+[2024-12-04 17:23:55] Importing Deprecated.members#61.0-1728568919000-java.trap.gz (65 of 676)
+[2024-12-04 17:23:55] Importing Double.members#61.0-1728568919000-java.trap.gz (66 of 676)
+[2024-12-04 17:23:55] Importing Enum$EnumDesc.members#61.0-1728568919000-java.trap.gz (67 of 676)
+[2024-12-04 17:23:55] Importing Enum.members#61.0-1728568919000-java.trap.gz (68 of 676)
+[2024-12-04 17:23:55] Importing Error.members#61.0-1728568919000-java.trap.gz (69 of 676)
+[2024-12-04 17:23:55] Importing Exception.members#61.0-1728568919000-java.trap.gz (70 of 676)
+[2024-12-04 17:23:55] Importing Float.members#61.0-1728568919000-java.trap.gz (71 of 676)
+[2024-12-04 17:23:55] Importing FunctionalInterface.members#61.0-1728568919000-java.trap.gz (72 of 676)
+[2024-12-04 17:23:55] Importing IllegalAccessException.members#61.0-1728568919000-java.trap.gz (73 of 676)
+[2024-12-04 17:23:55] Importing IllegalArgumentException.members#61.0-1728568919000-java.trap.gz (74 of 676)
+[2024-12-04 17:23:55] Importing IndexOutOfBoundsException.members#61.0-1728568919000-java.trap.gz (75 of 676)
+[2024-12-04 17:23:55] Importing InstantiationException.members#61.0-1728568919000-java.trap.gz (76 of 676)
+[2024-12-04 17:23:55] Importing Integer.members#61.0-1728568919000-java.trap.gz (77 of 676)
+[2024-12-04 17:23:55] Importing InternalError.members#61.0-1728568919000-java.trap.gz (78 of 676)
+[2024-12-04 17:23:55] Importing InterruptedException.members#61.0-1728568919000-java.trap.gz (79 of 676)
+[2024-12-04 17:23:55] Importing Iterable.members#61.0-1728568919000-java.trap.gz (80 of 676)
+[2024-12-04 17:23:55] Importing LinkageError.members#61.0-1728568919000-java.trap.gz (81 of 676)
+[2024-12-04 17:23:55] Importing Long.members#61.0-1728568919000-java.trap.gz (82 of 676)
+[2024-12-04 17:23:55] Importing Module.members#61.0-1728568919000-java.trap.gz (83 of 676)
+[2024-12-04 17:23:55] Importing ModuleLayer$Controller.members#61.0-1728568919000-java.trap.gz (84 of 676)
+[2024-12-04 17:23:55] Importing ModuleLayer.members#61.0-1728568919000-java.trap.gz (85 of 676)
+[2024-12-04 17:23:55] Importing NamedPackage.members#61.0-1728568919000-java.trap.gz (86 of 676)
+[2024-12-04 17:23:55] Importing NoSuchFieldException.members#61.0-1728568919000-java.trap.gz (87 of 676)
+[2024-12-04 17:23:55] Importing NoSuchMethodException.members#61.0-1728568919000-java.trap.gz (88 of 676)
+[2024-12-04 17:23:55] Importing Number.members#61.0-1728568919000-java.trap.gz (89 of 676)
+[2024-12-04 17:23:55] Importing NumberFormatException.members#61.0-1728568919000-java.trap.gz (90 of 676)
+[2024-12-04 17:23:55] Importing Object.members#61.0-1728568919000-java.trap.gz (91 of 676)
+[2024-12-04 17:23:55] Importing Package.members#61.0-1728568919000-java.trap.gz (92 of 676)
+[2024-12-04 17:23:55] Importing Readable.members#61.0-1728568919000-java.trap.gz (93 of 676)
+[2024-12-04 17:23:55] Importing ReflectiveOperationException.members#61.0-1728568919000-java.trap.gz (94 of 676)
+[2024-12-04 17:23:55] Importing Runnable.members#61.0-1728568919000-java.trap.gz (95 of 676)
+[2024-12-04 17:23:55] Importing RuntimeException.members#61.0-1728568919000-java.trap.gz (96 of 676)
+[2024-12-04 17:23:55] Importing SafeVarargs.members#61.0-1728568919000-java.trap.gz (97 of 676)
+[2024-12-04 17:23:56] Importing SecurityException.members#61.0-1728568919000-java.trap.gz (98 of 676)
+[2024-12-04 17:23:56] Importing SecurityManager.members#61.0-1728568919000-java.trap.gz (99 of 676)
+[2024-12-04 17:23:56] Importing StackFrameInfo.members#61.0-1728568919000-java.trap.gz (100 of 676)
+[2024-12-04 17:23:56] Importing StackTraceElement.members#61.0-1728568919000-java.trap.gz (101 of 676)
+[2024-12-04 17:23:56] Importing StackWalker$ExtendedOption.members#61.0-1728568919000-java.trap.gz (102 of 676)
+[2024-12-04 17:23:56] Importing StackWalker$Option.members#61.0-1728568919000-java.trap.gz (103 of 676)
+[2024-12-04 17:23:56] Importing StackWalker$StackFrame.members#61.0-1728568919000-java.trap.gz (104 of 676)
+[2024-12-04 17:23:56] Importing StackWalker.members#61.0-1728568919000-java.trap.gz (105 of 676)
+[2024-12-04 17:23:56] Importing String.members#61.0-1728568919000-java.trap.gz (106 of 676)
+[2024-12-04 17:23:56] Importing StringBuffer.members#61.0-1728568919000-java.trap.gz (107 of 676)
+[2024-12-04 17:23:56] Importing StringBuilder.members#61.0-1728568919000-java.trap.gz (108 of 676)
+[2024-12-04 17:23:56] Importing System$Logger$Level.members#61.0-1728568919000-java.trap.gz (109 of 676)
+[2024-12-04 17:23:56] Importing System$Logger.members#61.0-1728568919000-java.trap.gz (110 of 676)
+[2024-12-04 17:23:56] Importing System.members#61.0-1728568919000-java.trap.gz (111 of 676)
+[2024-12-04 17:23:56] Importing Thread$State.members#61.0-1728568919000-java.trap.gz (112 of 676)
+[2024-12-04 17:23:56] Importing Thread$UncaughtExceptionHandler.members#61.0-1728568919000-java.trap.gz (113 of 676)
+[2024-12-04 17:23:56] Importing Thread.members#61.0-1728568919000-java.trap.gz (114 of 676)
+[2024-12-04 17:23:56] Importing ThreadGroup.members#61.0-1728568919000-java.trap.gz (115 of 676)
+[2024-12-04 17:23:56] Importing ThreadLocal$ThreadLocalMap.members#61.0-1728568919000-java.trap.gz (116 of 676)
+[2024-12-04 17:23:56] Importing ThreadLocal.members#61.0-1728568919000-java.trap.gz (117 of 676)
+[2024-12-04 17:23:56] Importing Throwable.members#61.0-1728568919000-java.trap.gz (118 of 676)
+[2024-12-04 17:23:56] Importing TypeNotPresentException.members#61.0-1728568919000-java.trap.gz (119 of 676)
+[2024-12-04 17:23:56] Importing UnsupportedOperationException.members#61.0-1728568919000-java.trap.gz (120 of 676)
+[2024-12-04 17:23:56] Importing VirtualMachineError.members#61.0-1728568919000-java.trap.gz (121 of 676)
+[2024-12-04 17:23:56] Importing Void.members#61.0-1728568919000-java.trap.gz (122 of 676)
+[2024-12-04 17:23:56] Importing Annotation.members#61.0-1728568919000-java.trap.gz (123 of 676)
+[2024-12-04 17:23:56] Importing Documented.members#61.0-1728568919000-java.trap.gz (124 of 676)
+[2024-12-04 17:23:56] Importing ElementType.members#61.0-1728568919000-java.trap.gz (125 of 676)
+[2024-12-04 17:23:56] Importing Retention.members#61.0-1728568919000-java.trap.gz (126 of 676)
+[2024-12-04 17:23:56] Importing RetentionPolicy.members#61.0-1728568919000-java.trap.gz (127 of 676)
+[2024-12-04 17:23:56] Importing Target.members#61.0-1728568919000-java.trap.gz (128 of 676)
+[2024-12-04 17:23:56] Importing AsTypeMethodHandleDesc.members#61.0-1728568919000-java.trap.gz (129 of 676)
+[2024-12-04 17:23:56] Importing ClassDesc.members#61.0-1728568919000-java.trap.gz (130 of 676)
+[2024-12-04 17:23:56] Importing Constable.members#61.0-1728568919000-java.trap.gz (131 of 676)
+[2024-12-04 17:23:56] Importing ConstantDesc.members#61.0-1728568919000-java.trap.gz (132 of 676)
+[2024-12-04 17:23:56] Importing DirectMethodHandleDesc$Kind.members#61.0-1728568919000-java.trap.gz (133 of 676)
+[2024-12-04 17:23:56] Importing DirectMethodHandleDesc.members#61.0-1728568919000-java.trap.gz (134 of 676)
+[2024-12-04 17:23:56] Importing DirectMethodHandleDescImpl.members#61.0-1728568919000-java.trap.gz (135 of 676)
+[2024-12-04 17:23:56] Importing DynamicConstantDesc.members#61.0-1728568919000-java.trap.gz (136 of 676)
+[2024-12-04 17:23:56] Importing MethodHandleDesc.members#61.0-1728568919000-java.trap.gz (137 of 676)
+[2024-12-04 17:23:56] Importing MethodTypeDesc.members#61.0-1728568919000-java.trap.gz (138 of 676)
+[2024-12-04 17:23:56] Importing MethodTypeDescImpl.members#61.0-1728568919000-java.trap.gz (139 of 676)
+[2024-12-04 17:23:56] Importing PrimitiveClassDescImpl.members#61.0-1728568919000-java.trap.gz (140 of 676)
+[2024-12-04 17:23:56] Importing ReferenceClassDescImpl.members#61.0-1728568919000-java.trap.gz (141 of 676)
+[2024-12-04 17:23:56] Importing BoundMethodHandle$Specializer$Factory.members#61.0-1728568919000-java.trap.gz (142 of 676)
+[2024-12-04 17:23:56] Importing BoundMethodHandle$Specializer.members#61.0-1728568919000-java.trap.gz (143 of 676)
+[2024-12-04 17:23:56] Importing BoundMethodHandle$SpeciesData.members#61.0-1728568919000-java.trap.gz (144 of 676)
+[2024-12-04 17:23:56] Importing BoundMethodHandle.members#61.0-1728568919000-java.trap.gz (145 of 676)
+[2024-12-04 17:23:56] Importing CallSite.members#61.0-1728568919000-java.trap.gz (146 of 676)
+[2024-12-04 17:23:56] Importing ClassSpecializer$Factory.members#61.0-1728568919000-java.trap.gz (147 of 676)
+[2024-12-04 17:23:56] Importing ClassSpecializer$SpeciesData.members#61.0-1728568919000-java.trap.gz (148 of 676)
+[2024-12-04 17:23:56] Importing ClassSpecializer.members#61.0-1728568919000-java.trap.gz (149 of 676)
+[2024-12-04 17:23:56] Importing DirectMethodHandle.members#61.0-1728568919000-java.trap.gz (150 of 676)
+[2024-12-04 17:23:56] Importing Invokers.members#61.0-1728568919000-java.trap.gz (151 of 676)
+[2024-12-04 17:23:56] Importing LambdaForm$BasicType.members#61.0-1728568919000-java.trap.gz (152 of 676)
+[2024-12-04 17:23:56] Importing LambdaForm$Kind.members#61.0-1728568919000-java.trap.gz (153 of 676)
+[2024-12-04 17:23:56] Importing LambdaForm$Name.members#61.0-1728568919000-java.trap.gz (154 of 676)
+[2024-12-04 17:23:56] Importing LambdaForm$NamedFunction.members#61.0-1728568919000-java.trap.gz (155 of 676)
+[2024-12-04 17:23:56] Importing LambdaForm.members#61.0-1728568919000-java.trap.gz (156 of 676)
+[2024-12-04 17:23:56] Importing LambdaFormEditor.members#61.0-1728568919000-java.trap.gz (157 of 676)
+[2024-12-04 17:23:56] Importing MemberName$Factory.members#61.0-1728568919000-java.trap.gz (158 of 676)
+[2024-12-04 17:23:56] Importing MemberName.members#61.0-1728568919000-java.trap.gz (159 of 676)
+[2024-12-04 17:23:56] Importing MethodHandle$PolymorphicSignature.members#61.0-1728568919000-java.trap.gz (160 of 676)
+[2024-12-04 17:23:56] Importing MethodHandle.members#61.0-1728568919000-java.trap.gz (161 of 676)
+[2024-12-04 17:23:56] Importing MethodHandleImpl$ArrayAccess.members#61.0-1728568919000-java.trap.gz (162 of 676)
+[2024-12-04 17:23:56] Importing MethodHandleImpl$CasesHolder.members#61.0-1728568919000-java.trap.gz (163 of 676)
+[2024-12-04 17:23:56] Importing MethodHandleImpl$Intrinsic.members#61.0-1728568919000-java.trap.gz (164 of 676)
+[2024-12-04 17:23:56] Importing MethodHandleImpl$LoopClauses.members#61.0-1728568919000-java.trap.gz (165 of 676)
+[2024-12-04 17:23:56] Importing MethodHandleImpl.members#61.0-1728568919000-java.trap.gz (166 of 676)
+[2024-12-04 17:23:56] Importing MethodHandleInfo.members#61.0-1728568919000-java.trap.gz (167 of 676)
+[2024-12-04 17:23:56] Importing MethodHandles$Lookup$ClassDefiner.members#61.0-1728568919000-java.trap.gz (168 of 676)
+[2024-12-04 17:23:56] Importing MethodHandles$Lookup$ClassOption.members#61.0-1728568919000-java.trap.gz (169 of 676)
+[2024-12-04 17:23:56] Importing MethodHandles$Lookup.members#61.0-1728568919000-java.trap.gz (170 of 676)
+[2024-12-04 17:23:56] Importing MethodHandles.members#61.0-1728568919000-java.trap.gz (171 of 676)
+[2024-12-04 17:23:56] Importing MethodType$ConcurrentWeakInternSet.members#61.0-1728568919000-java.trap.gz (172 of 676)
+[2024-12-04 17:23:56] Importing MethodType.members#61.0-1728568919000-java.trap.gz (173 of 676)
+[2024-12-04 17:23:56] Importing MethodTypeForm.members#61.0-1728568919000-java.trap.gz (174 of 676)
+[2024-12-04 17:23:56] Importing TypeDescriptor$OfField.members#61.0-1728568919000-java.trap.gz (175 of 676)
+[2024-12-04 17:23:56] Importing TypeDescriptor$OfMethod.members#61.0-1728568919000-java.trap.gz (176 of 676)
+[2024-12-04 17:23:56] Importing TypeDescriptor.members#61.0-1728568919000-java.trap.gz (177 of 676)
+[2024-12-04 17:23:56] Importing VarForm.members#61.0-1728568919000-java.trap.gz (178 of 676)
+[2024-12-04 17:23:56] Importing VarHandle$AccessDescriptor.members#61.0-1728568919000-java.trap.gz (179 of 676)
+[2024-12-04 17:23:56] Importing VarHandle$AccessMode.members#61.0-1728568919000-java.trap.gz (180 of 676)
+[2024-12-04 17:23:56] Importing VarHandle$AccessType.members#61.0-1728568919000-java.trap.gz (181 of 676)
+[2024-12-04 17:23:56] Importing VarHandle$TypesAndInvokers.members#61.0-1728568919000-java.trap.gz (182 of 676)
+[2024-12-04 17:23:56] Importing VarHandle$VarHandleDesc.members#61.0-1728568919000-java.trap.gz (183 of 676)
+[2024-12-04 17:23:56] Importing VarHandle.members#61.0-1728568919000-java.trap.gz (184 of 676)
+[2024-12-04 17:23:56] Importing WrongMethodTypeException.members#61.0-1728568919000-java.trap.gz (185 of 676)
+[2024-12-04 17:23:56] Importing Configuration.members#61.0-1728568919000-java.trap.gz (186 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Builder.members#61.0-1728568919000-java.trap.gz (187 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Exports$Modifier.members#61.0-1728568919000-java.trap.gz (188 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Exports.members#61.0-1728568919000-java.trap.gz (189 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Modifier.members#61.0-1728568919000-java.trap.gz (190 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Opens$Modifier.members#61.0-1728568919000-java.trap.gz (191 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Opens.members#61.0-1728568919000-java.trap.gz (192 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Provides.members#61.0-1728568919000-java.trap.gz (193 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Requires$Modifier.members#61.0-1728568919000-java.trap.gz (194 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Requires.members#61.0-1728568919000-java.trap.gz (195 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor$Version.members#61.0-1728568919000-java.trap.gz (196 of 676)
+[2024-12-04 17:23:56] Importing ModuleDescriptor.members#61.0-1728568919000-java.trap.gz (197 of 676)
+[2024-12-04 17:23:56] Importing ModuleFinder.members#61.0-1728568919000-java.trap.gz (198 of 676)
+[2024-12-04 17:23:56] Importing ModuleReader.members#61.0-1728568919000-java.trap.gz (199 of 676)
+[2024-12-04 17:23:56] Importing ModuleReference.members#61.0-1728568919000-java.trap.gz (200 of 676)
+[2024-12-04 17:23:56] Importing ResolvedModule.members#61.0-1728568919000-java.trap.gz (201 of 676)
+[2024-12-04 17:23:56] Importing Cleaner$Cleanable.members#61.0-1728568919000-java.trap.gz (202 of 676)
+[2024-12-04 17:23:56] Importing Cleaner.members#61.0-1728568919000-java.trap.gz (203 of 676)
+[2024-12-04 17:23:56] Importing PhantomReference.members#61.0-1728568919000-java.trap.gz (204 of 676)
+[2024-12-04 17:23:56] Importing Reference.members#61.0-1728568919000-java.trap.gz (205 of 676)
+[2024-12-04 17:23:56] Importing ReferenceQueue.members#61.0-1728568919000-java.trap.gz (206 of 676)
+[2024-12-04 17:23:56] Importing SoftReference.members#61.0-1728568919000-java.trap.gz (207 of 676)
+[2024-12-04 17:23:56] Importing WeakReference.members#61.0-1728568919000-java.trap.gz (208 of 676)
+[2024-12-04 17:23:56] Importing AccessibleObject.members#61.0-1728568919000-java.trap.gz (209 of 676)
+[2024-12-04 17:23:56] Importing AnnotatedElement.members#61.0-1728568919000-java.trap.gz (210 of 676)
+[2024-12-04 17:23:56] Importing AnnotatedType.members#61.0-1728568919000-java.trap.gz (211 of 676)
+[2024-12-04 17:23:56] Importing Constructor.members#61.0-1728568919000-java.trap.gz (212 of 676)
+[2024-12-04 17:23:56] Importing Executable.members#61.0-1728568919000-java.trap.gz (213 of 676)
+[2024-12-04 17:23:56] Importing Field.members#61.0-1728568919000-java.trap.gz (214 of 676)
+[2024-12-04 17:23:56] Importing GenericDeclaration.members#61.0-1728568919000-java.trap.gz (215 of 676)
+[2024-12-04 17:23:56] Importing InvocationTargetException.members#61.0-1728568919000-java.trap.gz (216 of 676)
+[2024-12-04 17:23:56] Importing Member.members#61.0-1728568919000-java.trap.gz (217 of 676)
+[2024-12-04 17:23:56] Importing Method.members#61.0-1728568919000-java.trap.gz (218 of 676)
+[2024-12-04 17:23:56] Importing Parameter.members#61.0-1728568919000-java.trap.gz (219 of 676)
+[2024-12-04 17:23:56] Importing ParameterizedType.members#61.0-1728568919000-java.trap.gz (220 of 676)
+[2024-12-04 17:23:56] Importing RecordComponent.members#61.0-1728568919000-java.trap.gz (221 of 676)
+[2024-12-04 17:23:56] Importing Type.members#61.0-1728568919000-java.trap.gz (222 of 676)
+[2024-12-04 17:23:56] Importing TypeVariable.members#61.0-1728568919000-java.trap.gz (223 of 676)
+[2024-12-04 17:23:56] Importing WildcardType.members#61.0-1728568919000-java.trap.gz (224 of 676)
+[2024-12-04 17:23:56] Importing BigDecimal.members#61.0-1728568919000-java.trap.gz (225 of 676)
+[2024-12-04 17:23:56] Importing BigInteger.members#61.0-1728568919000-java.trap.gz (226 of 676)
+[2024-12-04 17:23:56] Importing MathContext.members#61.0-1728568919000-java.trap.gz (227 of 676)
+[2024-12-04 17:23:56] Importing RoundingMode.members#61.0-1728568919000-java.trap.gz (228 of 676)
+[2024-12-04 17:23:56] Importing ContentHandler.members#61.0-1728568919000-java.trap.gz (229 of 676)
+[2024-12-04 17:23:56] Importing ContentHandlerFactory.members#61.0-1728568919000-java.trap.gz (230 of 676)
+[2024-12-04 17:23:56] Importing FileNameMap.members#61.0-1728568919000-java.trap.gz (231 of 676)
+[2024-12-04 17:23:56] Importing InetAddress$InetAddressHolder.members#61.0-1728568919000-java.trap.gz (232 of 676)
+[2024-12-04 17:23:56] Importing InetAddress.members#61.0-1728568919000-java.trap.gz (233 of 676)
+[2024-12-04 17:23:56] Importing InetAddressImpl.members#61.0-1728568919000-java.trap.gz (234 of 676)
+[2024-12-04 17:23:56] Importing InterfaceAddress.members#61.0-1728568919000-java.trap.gz (235 of 676)
+[2024-12-04 17:23:56] Importing MalformedURLException.members#61.0-1728568919000-java.trap.gz (236 of 676)
+[2024-12-04 17:23:56] Importing NetworkInterface.members#61.0-1728568919000-java.trap.gz (237 of 676)
+[2024-12-04 17:23:56] Importing Proxy$Type.members#61.0-1728568919000-java.trap.gz (238 of 676)
+[2024-12-04 17:23:56] Importing Proxy.members#61.0-1728568919000-java.trap.gz (239 of 676)
+[2024-12-04 17:23:56] Importing SocketAddress.members#61.0-1728568919000-java.trap.gz (240 of 676)
+[2024-12-04 17:23:56] Importing SocketException.members#61.0-1728568919000-java.trap.gz (241 of 676)
+[2024-12-04 17:23:56] Importing URI.members#61.0-1728568919000-java.trap.gz (242 of 676)
+[2024-12-04 17:23:56] Importing URISyntaxException.members#61.0-1728568919000-java.trap.gz (243 of 676)
+[2024-12-04 17:23:56] Importing URL.members#61.0-1728568919000-java.trap.gz (244 of 676)
+[2024-12-04 17:23:56] Importing URLConnection.members#61.0-1728568919000-java.trap.gz (245 of 676)
+[2024-12-04 17:23:56] Importing URLStreamHandler.members#61.0-1728568919000-java.trap.gz (246 of 676)
+[2024-12-04 17:23:56] Importing URLStreamHandlerFactory.members#61.0-1728568919000-java.trap.gz (247 of 676)
+[2024-12-04 17:23:56] Importing UnknownHostException.members#61.0-1728568919000-java.trap.gz (248 of 676)
+[2024-12-04 17:23:56] Importing Buffer.members#61.0-1728568919000-java.trap.gz (249 of 676)
+[2024-12-04 17:23:56] Importing ByteBuffer.members#61.0-1728568919000-java.trap.gz (250 of 676)
+[2024-12-04 17:23:56] Importing ByteOrder.members#61.0-1728568919000-java.trap.gz (251 of 676)
+[2024-12-04 17:23:56] Importing CharBuffer.members#61.0-1728568919000-java.trap.gz (252 of 676)
+[2024-12-04 17:23:56] Importing DoubleBuffer.members#61.0-1728568919000-java.trap.gz (253 of 676)
+[2024-12-04 17:23:56] Importing FloatBuffer.members#61.0-1728568919000-java.trap.gz (254 of 676)
+[2024-12-04 17:23:56] Importing IntBuffer.members#61.0-1728568919000-java.trap.gz (255 of 676)
+[2024-12-04 17:23:56] Importing LongBuffer.members#61.0-1728568919000-java.trap.gz (256 of 676)
+[2024-12-04 17:23:56] Importing MappedByteBuffer.members#61.0-1728568919000-java.trap.gz (257 of 676)
+[2024-12-04 17:23:56] Importing ShortBuffer.members#61.0-1728568919000-java.trap.gz (258 of 676)
+[2024-12-04 17:23:56] Importing AsynchronousChannel.members#61.0-1728568919000-java.trap.gz (259 of 676)
+[2024-12-04 17:23:56] Importing AsynchronousCloseException.members#61.0-1728568919000-java.trap.gz (260 of 676)
+[2024-12-04 17:23:56] Importing AsynchronousFileChannel.members#61.0-1728568919000-java.trap.gz (261 of 676)
+[2024-12-04 17:23:56] Importing ByteChannel.members#61.0-1728568919000-java.trap.gz (262 of 676)
+[2024-12-04 17:23:56] Importing Channel.members#61.0-1728568919000-java.trap.gz (263 of 676)
+[2024-12-04 17:23:56] Importing ClosedChannelException.members#61.0-1728568919000-java.trap.gz (264 of 676)
+[2024-12-04 17:23:56] Importing CompletionHandler.members#61.0-1728568919000-java.trap.gz (265 of 676)
+[2024-12-04 17:23:56] Importing FileChannel$MapMode.members#61.0-1728568919000-java.trap.gz (266 of 676)
+[2024-12-04 17:23:56] Importing FileChannel.members#61.0-1728568919000-java.trap.gz (267 of 676)
+[2024-12-04 17:23:56] Importing FileLock.members#61.0-1728568919000-java.trap.gz (268 of 676)
+[2024-12-04 17:23:56] Importing GatheringByteChannel.members#61.0-1728568919000-java.trap.gz (269 of 676)
+[2024-12-04 17:23:56] Importing InterruptibleChannel.members#61.0-1728568919000-java.trap.gz (270 of 676)
+[2024-12-04 17:23:56] Importing ReadableByteChannel.members#61.0-1728568919000-java.trap.gz (271 of 676)
+[2024-12-04 17:23:56] Importing ScatteringByteChannel.members#61.0-1728568919000-java.trap.gz (272 of 676)
+[2024-12-04 17:23:56] Importing SeekableByteChannel.members#61.0-1728568919000-java.trap.gz (273 of 676)
+[2024-12-04 17:23:56] Importing WritableByteChannel.members#61.0-1728568919000-java.trap.gz (274 of 676)
+[2024-12-04 17:23:56] Importing AbstractInterruptibleChannel.members#61.0-1728568919000-java.trap.gz (275 of 676)
+[2024-12-04 17:23:56] Importing CharacterCodingException.members#61.0-1728568919000-java.trap.gz (276 of 676)
+[2024-12-04 17:23:56] Importing Charset.members#61.0-1728568919000-java.trap.gz (277 of 676)
+[2024-12-04 17:23:56] Importing CharsetDecoder.members#61.0-1728568919000-java.trap.gz (278 of 676)
+[2024-12-04 17:23:56] Importing CharsetEncoder.members#61.0-1728568919000-java.trap.gz (279 of 676)
+[2024-12-04 17:23:56] Importing CoderResult.members#61.0-1728568919000-java.trap.gz (280 of 676)
+[2024-12-04 17:23:56] Importing CodingErrorAction.members#61.0-1728568919000-java.trap.gz (281 of 676)
+[2024-12-04 17:23:56] Importing AccessMode.members#61.0-1728568919000-java.trap.gz (282 of 676)
+[2024-12-04 17:23:56] Importing CopyOption.members#61.0-1728568919000-java.trap.gz (283 of 676)
+[2024-12-04 17:23:56] Importing DirectoryStream$Filter.members#61.0-1728568919000-java.trap.gz (284 of 676)
+[2024-12-04 17:23:56] Importing DirectoryStream.members#61.0-1728568919000-java.trap.gz (285 of 676)
+[2024-12-04 17:23:56] Importing FileStore.members#61.0-1728568919000-java.trap.gz (286 of 676)
+[2024-12-04 17:23:56] Importing FileSystem.members#61.0-1728568919000-java.trap.gz (287 of 676)
+[2024-12-04 17:23:56] Importing LinkOption.members#61.0-1728568919000-java.trap.gz (288 of 676)
+[2024-12-04 17:23:56] Importing OpenOption.members#61.0-1728568919000-java.trap.gz (289 of 676)
+[2024-12-04 17:23:56] Importing Path.members#61.0-1728568919000-java.trap.gz (290 of 676)
+[2024-12-04 17:23:56] Importing PathMatcher.members#61.0-1728568919000-java.trap.gz (291 of 676)
+[2024-12-04 17:23:56] Importing WatchEvent$Kind.members#61.0-1728568919000-java.trap.gz (292 of 676)
+[2024-12-04 17:23:56] Importing WatchEvent$Modifier.members#61.0-1728568919000-java.trap.gz (293 of 676)
+[2024-12-04 17:23:56] Importing WatchEvent.members#61.0-1728568919000-java.trap.gz (294 of 676)
+[2024-12-04 17:23:56] Importing WatchKey.members#61.0-1728568919000-java.trap.gz (295 of 676)
+[2024-12-04 17:23:56] Importing WatchService.members#61.0-1728568919000-java.trap.gz (296 of 676)
+[2024-12-04 17:23:56] Importing Watchable.members#61.0-1728568919000-java.trap.gz (297 of 676)
+[2024-12-04 17:23:56] Importing AttributeView.members#61.0-1728568919000-java.trap.gz (298 of 676)
+[2024-12-04 17:23:56] Importing BasicFileAttributes.members#61.0-1728568919000-java.trap.gz (299 of 676)
+[2024-12-04 17:23:56] Importing FileAttribute.members#61.0-1728568919000-java.trap.gz (300 of 676)
+[2024-12-04 17:23:56] Importing FileAttributeView.members#61.0-1728568919000-java.trap.gz (301 of 676)
+[2024-12-04 17:23:56] Importing FileStoreAttributeView.members#61.0-1728568919000-java.trap.gz (302 of 676)
+[2024-12-04 17:23:56] Importing FileTime.members#61.0-1728568919000-java.trap.gz (303 of 676)
+[2024-12-04 17:23:56] Importing GroupPrincipal.members#61.0-1728568919000-java.trap.gz (304 of 676)
+[2024-12-04 17:23:56] Importing UserPrincipal.members#61.0-1728568919000-java.trap.gz (305 of 676)
+[2024-12-04 17:23:56] Importing UserPrincipalLookupService.members#61.0-1728568919000-java.trap.gz (306 of 676)
+[2024-12-04 17:23:56] Importing FileSystemProvider.members#61.0-1728568919000-java.trap.gz (307 of 676)
+[2024-12-04 17:23:56] Importing AccessControlContext.members#61.0-1728568919000-java.trap.gz (308 of 676)
+[2024-12-04 17:23:56] Importing AccessControlException.members#61.0-1728568919000-java.trap.gz (309 of 676)
+[2024-12-04 17:23:56] Importing BasicPermission.members#61.0-1728568919000-java.trap.gz (310 of 676)
+[2024-12-04 17:23:56] Importing CodeSigner.members#61.0-1728568919000-java.trap.gz (311 of 676)
+[2024-12-04 17:23:56] Importing CodeSource.members#61.0-1728568919000-java.trap.gz (312 of 676)
+[2024-12-04 17:23:56] Importing DomainCombiner.members#61.0-1728568919000-java.trap.gz (313 of 676)
+[2024-12-04 17:23:56] Importing GeneralSecurityException.members#61.0-1728568919000-java.trap.gz (314 of 676)
+[2024-12-04 17:23:56] Importing Guard.members#61.0-1728568919000-java.trap.gz (315 of 676)
+[2024-12-04 17:23:56] Importing InvalidKeyException.members#61.0-1728568919000-java.trap.gz (316 of 676)
+[2024-12-04 17:23:56] Importing Key.members#61.0-1728568919000-java.trap.gz (317 of 676)
+[2024-12-04 17:23:56] Importing KeyException.members#61.0-1728568919000-java.trap.gz (318 of 676)
+[2024-12-04 17:23:56] Importing NoSuchAlgorithmException.members#61.0-1728568919000-java.trap.gz (319 of 676)
+[2024-12-04 17:23:56] Importing NoSuchProviderException.members#61.0-1728568919000-java.trap.gz (320 of 676)
+[2024-12-04 17:23:56] Importing Permission.members#61.0-1728568919000-java.trap.gz (321 of 676)
+[2024-12-04 17:23:56] Importing PermissionCollection.members#61.0-1728568919000-java.trap.gz (322 of 676)
+[2024-12-04 17:23:56] Importing Principal.members#61.0-1728568919000-java.trap.gz (323 of 676)
+[2024-12-04 17:23:56] Importing PrivilegedAction.members#61.0-1728568919000-java.trap.gz (324 of 676)
+[2024-12-04 17:23:56] Importing PrivilegedActionException.members#61.0-1728568919000-java.trap.gz (325 of 676)
+[2024-12-04 17:23:56] Importing PrivilegedExceptionAction.members#61.0-1728568919000-java.trap.gz (326 of 676)
+[2024-12-04 17:23:56] Importing ProtectionDomain$Key.members#61.0-1728568919000-java.trap.gz (327 of 676)
+[2024-12-04 17:23:56] Importing ProtectionDomain.members#61.0-1728568919000-java.trap.gz (328 of 676)
+[2024-12-04 17:23:56] Importing Provider$Service.members#61.0-1728568919000-java.trap.gz (329 of 676)
+[2024-12-04 17:23:56] Importing Provider.members#61.0-1728568919000-java.trap.gz (330 of 676)
+[2024-12-04 17:23:56] Importing PublicKey.members#61.0-1728568919000-java.trap.gz (331 of 676)
+[2024-12-04 17:23:56] Importing SignatureException.members#61.0-1728568919000-java.trap.gz (332 of 676)
+[2024-12-04 17:23:56] Importing Timestamp.members#61.0-1728568919000-java.trap.gz (333 of 676)
+[2024-12-04 17:23:56] Importing CertPath.members#61.0-1728568919000-java.trap.gz (334 of 676)
+[2024-12-04 17:23:56] Importing Certificate.members#61.0-1728568919000-java.trap.gz (335 of 676)
+[2024-12-04 17:23:56] Importing CertificateEncodingException.members#61.0-1728568919000-java.trap.gz (336 of 676)
+[2024-12-04 17:23:56] Importing CertificateException.members#61.0-1728568919000-java.trap.gz (337 of 676)
+[2024-12-04 17:23:56] Importing Array.members#61.0-1728568919000-java.trap.gz (338 of 676)
+[2024-12-04 17:23:56] Importing Blob.members#61.0-1728568919000-java.trap.gz (339 of 676)
+[2024-12-04 17:23:56] Importing CallableStatement.members#61.0-1728568919000-java.trap.gz (340 of 676)
+[2024-12-04 17:23:56] Importing ClientInfoStatus.members#61.0-1728568919000-java.trap.gz (341 of 676)
+[2024-12-04 17:23:56] Importing Clob.members#61.0-1728568919000-java.trap.gz (342 of 676)
+[2024-12-04 17:23:56] Importing Connection.members#61.0-1728568919000-java.trap.gz (343 of 676)
+[2024-12-04 17:23:56] Importing DatabaseMetaData.members#61.0-1728568919000-java.trap.gz (344 of 676)
+[2024-12-04 17:23:56] Importing Date.members#61.0-1728568919000-java.trap.gz (345 of 676)
+[2024-12-04 17:23:56] Importing Driver.members#61.0-1728568919000-java.trap.gz (346 of 676)
+[2024-12-04 17:23:56] Importing DriverAction.members#61.0-1728568919000-java.trap.gz (347 of 676)
+[2024-12-04 17:23:56] Importing DriverManager.members#61.0-1728568919000-java.trap.gz (348 of 676)
+[2024-12-04 17:23:56] Importing DriverPropertyInfo.members#61.0-1728568919000-java.trap.gz (349 of 676)
+[2024-12-04 17:23:56] Importing NClob.members#61.0-1728568919000-java.trap.gz (350 of 676)
+[2024-12-04 17:23:56] Importing ParameterMetaData.members#61.0-1728568919000-java.trap.gz (351 of 676)
+[2024-12-04 17:23:56] Importing PreparedStatement.members#61.0-1728568919000-java.trap.gz (352 of 676)
+[2024-12-04 17:23:56] Importing Ref.members#61.0-1728568919000-java.trap.gz (353 of 676)
+[2024-12-04 17:23:56] Importing ResultSet.members#61.0-1728568919000-java.trap.gz (354 of 676)
+[2024-12-04 17:23:56] Importing ResultSetMetaData.members#61.0-1728568919000-java.trap.gz (355 of 676)
+[2024-12-04 17:23:56] Importing RowId.members#61.0-1728568919000-java.trap.gz (356 of 676)
+[2024-12-04 17:23:56] Importing RowIdLifetime.members#61.0-1728568919000-java.trap.gz (357 of 676)
+[2024-12-04 17:23:56] Importing SQLClientInfoException.members#61.0-1728568919000-java.trap.gz (358 of 676)
+[2024-12-04 17:23:56] Importing SQLException.members#61.0-1728568919000-java.trap.gz (359 of 676)
+[2024-12-04 17:23:56] Importing SQLFeatureNotSupportedException.members#61.0-1728568919000-java.trap.gz (360 of 676)
+[2024-12-04 17:23:56] Importing SQLNonTransientException.members#61.0-1728568919000-java.trap.gz (361 of 676)
+[2024-12-04 17:23:56] Importing SQLPermission.members#61.0-1728568919000-java.trap.gz (362 of 676)
+[2024-12-04 17:23:56] Importing SQLType.members#61.0-1728568919000-java.trap.gz (363 of 676)
+[2024-12-04 17:23:56] Importing SQLWarning.members#61.0-1728568919000-java.trap.gz (364 of 676)
+[2024-12-04 17:23:56] Importing SQLXML.members#61.0-1728568919000-java.trap.gz (365 of 676)
+[2024-12-04 17:23:56] Importing Savepoint.members#61.0-1728568919000-java.trap.gz (366 of 676)
+[2024-12-04 17:23:56] Importing ShardingKey.members#61.0-1728568919000-java.trap.gz (367 of 676)
+[2024-12-04 17:23:56] Importing Statement.members#61.0-1728568919000-java.trap.gz (368 of 676)
+[2024-12-04 17:23:56] Importing Struct.members#61.0-1728568919000-java.trap.gz (369 of 676)
+[2024-12-04 17:23:56] Importing Time.members#61.0-1728568919000-java.trap.gz (370 of 676)
+[2024-12-04 17:23:56] Importing Timestamp.members#61.0-1728568919000-java.trap.gz (371 of 676)
+[2024-12-04 17:23:56] Importing Wrapper.members#61.0-1728568919000-java.trap.gz (372 of 676)
+[2024-12-04 17:23:56] Importing AttributedCharacterIterator$Attribute.members#61.0-1728568919000-java.trap.gz (373 of 676)
+[2024-12-04 17:23:56] Importing AttributedCharacterIterator.members#61.0-1728568919000-java.trap.gz (374 of 676)
+[2024-12-04 17:23:56] Importing CharacterIterator.members#61.0-1728568919000-java.trap.gz (375 of 676)
+[2024-12-04 17:23:56] Importing FieldPosition.members#61.0-1728568919000-java.trap.gz (376 of 676)
+[2024-12-04 17:23:56] Importing Format$Field.members#61.0-1728568919000-java.trap.gz (377 of 676)
+[2024-12-04 17:23:56] Importing Format$FieldDelegate.members#61.0-1728568919000-java.trap.gz (378 of 676)
+[2024-12-04 17:23:56] Importing Format.members#61.0-1728568919000-java.trap.gz (379 of 676)
+[2024-12-04 17:23:56] Importing ParseException.members#61.0-1728568919000-java.trap.gz (380 of 676)
+[2024-12-04 17:23:56] Importing ParsePosition.members#61.0-1728568919000-java.trap.gz (381 of 676)
+[2024-12-04 17:23:56] Importing Clock.members#61.0-1728568919000-java.trap.gz (382 of 676)
+[2024-12-04 17:23:56] Importing DayOfWeek.members#61.0-1728568919000-java.trap.gz (383 of 676)
+[2024-12-04 17:23:56] Importing Duration.members#61.0-1728568919000-java.trap.gz (384 of 676)
+[2024-12-04 17:23:56] Importing Instant.members#61.0-1728568919000-java.trap.gz (385 of 676)
+[2024-12-04 17:23:56] Importing InstantSource.members#61.0-1728568919000-java.trap.gz (386 of 676)
+[2024-12-04 17:23:56] Importing LocalDate.members#61.0-1728568919000-java.trap.gz (387 of 676)
+[2024-12-04 17:23:56] Importing LocalDateTime.members#61.0-1728568919000-java.trap.gz (388 of 676)
+[2024-12-04 17:23:56] Importing LocalTime.members#61.0-1728568919000-java.trap.gz (389 of 676)
+[2024-12-04 17:23:56] Importing Month.members#61.0-1728568919000-java.trap.gz (390 of 676)
+[2024-12-04 17:23:56] Importing OffsetDateTime.members#61.0-1728568919000-java.trap.gz (391 of 676)
+[2024-12-04 17:23:56] Importing OffsetTime.members#61.0-1728568919000-java.trap.gz (392 of 676)
+[2024-12-04 17:23:56] Importing Period.members#61.0-1728568919000-java.trap.gz (393 of 676)
+[2024-12-04 17:23:56] Importing ZoneId.members#61.0-1728568919000-java.trap.gz (394 of 676)
+[2024-12-04 17:23:56] Importing ZoneOffset.members#61.0-1728568919000-java.trap.gz (395 of 676)
+[2024-12-04 17:23:56] Importing ZonedDateTime.members#61.0-1728568919000-java.trap.gz (396 of 676)
+[2024-12-04 17:23:56] Importing AbstractChronology.members#61.0-1728568919000-java.trap.gz (397 of 676)
+[2024-12-04 17:23:56] Importing ChronoLocalDate.members#61.0-1728568919000-java.trap.gz (398 of 676)
+[2024-12-04 17:23:56] Importing ChronoLocalDateTime.members#61.0-1728568919000-java.trap.gz (399 of 676)
+[2024-12-04 17:23:56] Importing ChronoPeriod.members#61.0-1728568919000-java.trap.gz (400 of 676)
+[2024-12-04 17:23:56] Importing ChronoZonedDateTime.members#61.0-1728568919000-java.trap.gz (401 of 676)
+[2024-12-04 17:23:56] Importing Chronology.members#61.0-1728568919000-java.trap.gz (402 of 676)
+[2024-12-04 17:23:56] Importing Era.members#61.0-1728568919000-java.trap.gz (403 of 676)
+[2024-12-04 17:23:56] Importing IsoChronology.members#61.0-1728568919000-java.trap.gz (404 of 676)
+[2024-12-04 17:23:56] Importing IsoEra.members#61.0-1728568919000-java.trap.gz (405 of 676)
+[2024-12-04 17:23:56] Importing DateTimeFormatter.members#61.0-1728568919000-java.trap.gz (406 of 676)
+[2024-12-04 17:23:56] Importing DateTimeFormatterBuilder$CompositePrinterParser.members#61.0-1728568919000-java.trap.gz (407 of 676)
+[2024-12-04 17:23:56] Importing DateTimeFormatterBuilder$DateTimePrinterParser.members#61.0-1728568919000-java.trap.gz (408 of 676)
+[2024-12-04 17:23:56] Importing DateTimeFormatterBuilder$DayPeriod.members#61.0-1728568919000-java.trap.gz (409 of 676)
+[2024-12-04 17:23:56] Importing DateTimeFormatterBuilder.members#61.0-1728568919000-java.trap.gz (410 of 676)
+[2024-12-04 17:23:56] Importing DateTimeParseContext.members#61.0-1728568919000-java.trap.gz (411 of 676)
+[2024-12-04 17:23:56] Importing DateTimePrintContext.members#61.0-1728568919000-java.trap.gz (412 of 676)
+[2024-12-04 17:23:56] Importing DecimalStyle.members#61.0-1728568919000-java.trap.gz (413 of 676)
+[2024-12-04 17:23:56] Importing FormatStyle.members#61.0-1728568919000-java.trap.gz (414 of 676)
+[2024-12-04 17:23:56] Importing Parsed.members#61.0-1728568919000-java.trap.gz (415 of 676)
+[2024-12-04 17:23:56] Importing ResolverStyle.members#61.0-1728568919000-java.trap.gz (416 of 676)
+[2024-12-04 17:23:56] Importing SignStyle.members#61.0-1728568919000-java.trap.gz (417 of 676)
+[2024-12-04 17:23:56] Importing TextStyle.members#61.0-1728568919000-java.trap.gz (418 of 676)
+[2024-12-04 17:23:56] Importing ChronoField.members#61.0-1728568919000-java.trap.gz (419 of 676)
+[2024-12-04 17:23:56] Importing ChronoUnit.members#61.0-1728568919000-java.trap.gz (420 of 676)
+[2024-12-04 17:23:56] Importing Temporal.members#61.0-1728568919000-java.trap.gz (421 of 676)
+[2024-12-04 17:23:56] Importing TemporalAccessor.members#61.0-1728568919000-java.trap.gz (422 of 676)
+[2024-12-04 17:23:56] Importing TemporalAdjuster.members#61.0-1728568919000-java.trap.gz (423 of 676)
+[2024-12-04 17:23:56] Importing TemporalAmount.members#61.0-1728568919000-java.trap.gz (424 of 676)
+[2024-12-04 17:23:56] Importing TemporalField.members#61.0-1728568919000-java.trap.gz (425 of 676)
+[2024-12-04 17:23:56] Importing TemporalQuery.members#61.0-1728568919000-java.trap.gz (426 of 676)
+[2024-12-04 17:23:56] Importing TemporalUnit.members#61.0-1728568919000-java.trap.gz (427 of 676)
+[2024-12-04 17:23:56] Importing ValueRange.members#61.0-1728568919000-java.trap.gz (428 of 676)
+[2024-12-04 17:23:56] Importing ZoneOffsetTransition.members#61.0-1728568919000-java.trap.gz (429 of 676)
+[2024-12-04 17:23:56] Importing ZoneOffsetTransitionRule$TimeDefinition.members#61.0-1728568919000-java.trap.gz (430 of 676)
+[2024-12-04 17:23:56] Importing ZoneOffsetTransitionRule.members#61.0-1728568919000-java.trap.gz (431 of 676)
+[2024-12-04 17:23:56] Importing ZoneRules.members#61.0-1728568919000-java.trap.gz (432 of 676)
+[2024-12-04 17:23:56] Importing AbstractCollection.members#61.0-1728568919000-java.trap.gz (433 of 676)
+[2024-12-04 17:23:56] Importing AbstractMap.members#61.0-1728568919000-java.trap.gz (434 of 676)
+[2024-12-04 17:23:56] Importing AbstractSet.members#61.0-1728568919000-java.trap.gz (435 of 676)
+[2024-12-04 17:23:56] Importing Calendar.members#61.0-1728568919000-java.trap.gz (436 of 676)
+[2024-12-04 17:23:56] Importing Collection.members#61.0-1728568919000-java.trap.gz (437 of 676)
+[2024-12-04 17:23:56] Importing Comparator.members#61.0-1728568919000-java.trap.gz (438 of 676)
+[2024-12-04 17:23:56] Importing Date.members#61.0-1728568919000-java.trap.gz (439 of 676)
+[2024-12-04 17:23:56] Importing Dictionary.members#61.0-1728568919000-java.trap.gz (440 of 676)
+[2024-12-04 17:23:56] Importing DoubleSummaryStatistics.members#61.0-1728568919000-java.trap.gz (441 of 676)
+[2024-12-04 17:23:56] Importing EnumSet.members#61.0-1728568919000-java.trap.gz (442 of 676)
+[2024-12-04 17:23:56] Importing Enumeration.members#61.0-1728568919000-java.trap.gz (443 of 676)
+[2024-12-04 17:23:56] Importing HashMap$Node.members#61.0-1728568919000-java.trap.gz (444 of 676)
+[2024-12-04 17:23:56] Importing HashMap$TreeNode.members#61.0-1728568919000-java.trap.gz (445 of 676)
+[2024-12-04 17:23:56] Importing HashMap.members#61.0-1728568919000-java.trap.gz (446 of 676)
+[2024-12-04 17:23:56] Importing Hashtable.members#61.0-1728568919000-java.trap.gz (447 of 676)
+[2024-12-04 17:23:56] Importing IntSummaryStatistics.members#61.0-1728568919000-java.trap.gz (448 of 676)
+[2024-12-04 17:23:56] Importing InvalidPropertiesFormatException.members#61.0-1728568919000-java.trap.gz (449 of 676)
+[2024-12-04 17:23:56] Importing Iterator.members#61.0-1728568919000-java.trap.gz (450 of 676)
+[2024-12-04 17:23:56] Importing LinkedHashMap$Entry.members#61.0-1728568919000-java.trap.gz (451 of 676)
+[2024-12-04 17:23:56] Importing LinkedHashMap.members#61.0-1728568919000-java.trap.gz (452 of 676)
+[2024-12-04 17:23:56] Importing List.members#61.0-1728568919000-java.trap.gz (453 of 676)
+[2024-12-04 17:23:56] Importing ListIterator.members#61.0-1728568919000-java.trap.gz (454 of 676)
+[2024-12-04 17:23:56] Importing Locale$Category.members#61.0-1728568919000-java.trap.gz (455 of 676)
+[2024-12-04 17:23:56] Importing Locale$FilteringMode.members#61.0-1728568919000-java.trap.gz (456 of 676)
+[2024-12-04 17:23:56] Importing Locale$IsoCountryCode.members#61.0-1728568919000-java.trap.gz (457 of 676)
+[2024-12-04 17:23:56] Importing Locale$LanguageRange.members#61.0-1728568919000-java.trap.gz (458 of 676)
+[2024-12-04 17:23:56] Importing Locale.members#61.0-1728568919000-java.trap.gz (459 of 676)
+[2024-12-04 17:23:56] Importing LongSummaryStatistics.members#61.0-1728568919000-java.trap.gz (460 of 676)
+[2024-12-04 17:23:56] Importing Map$Entry.members#61.0-1728568919000-java.trap.gz (461 of 676)
+[2024-12-04 17:23:56] Importing Map.members#61.0-1728568919000-java.trap.gz (462 of 676)
+[2024-12-04 17:23:56] Importing MissingResourceException.members#61.0-1728568919000-java.trap.gz (463 of 676)
+[2024-12-04 17:23:56] Importing Optional.members#61.0-1728568919000-java.trap.gz (464 of 676)
+[2024-12-04 17:23:56] Importing OptionalDouble.members#61.0-1728568919000-java.trap.gz (465 of 676)
+[2024-12-04 17:23:56] Importing OptionalInt.members#61.0-1728568919000-java.trap.gz (466 of 676)
+[2024-12-04 17:23:56] Importing OptionalLong.members#61.0-1728568919000-java.trap.gz (467 of 676)
+[2024-12-04 17:23:56] Importing PrimitiveIterator$OfDouble.members#61.0-1728568919000-java.trap.gz (468 of 676)
+[2024-12-04 17:23:56] Importing PrimitiveIterator$OfInt.members#61.0-1728568919000-java.trap.gz (469 of 676)
+[2024-12-04 17:23:56] Importing PrimitiveIterator$OfLong.members#61.0-1728568919000-java.trap.gz (470 of 676)
+[2024-12-04 17:23:56] Importing PrimitiveIterator.members#61.0-1728568919000-java.trap.gz (471 of 676)
+[2024-12-04 17:23:56] Importing Properties.members#61.0-1728568919000-java.trap.gz (472 of 676)
+[2024-12-04 17:23:56] Importing Random.members#61.0-1728568919000-java.trap.gz (473 of 676)
+[2024-12-04 17:23:56] Importing ResourceBundle$Control.members#61.0-1728568919000-java.trap.gz (474 of 676)
+[2024-12-04 17:23:56] Importing ResourceBundle.members#61.0-1728568919000-java.trap.gz (475 of 676)
+[2024-12-04 17:23:56] Importing Set.members#61.0-1728568919000-java.trap.gz (476 of 676)
+[2024-12-04 17:23:56] Importing SortedMap.members#61.0-1728568919000-java.trap.gz (477 of 676)
+[2024-12-04 17:23:56] Importing Spliterator$OfDouble.members#61.0-1728568919000-java.trap.gz (478 of 676)
+[2024-12-04 17:23:56] Importing Spliterator$OfInt.members#61.0-1728568919000-java.trap.gz (479 of 676)
+[2024-12-04 17:23:56] Importing Spliterator$OfLong.members#61.0-1728568919000-java.trap.gz (480 of 676)
+[2024-12-04 17:23:56] Importing Spliterator$OfPrimitive.members#61.0-1728568919000-java.trap.gz (481 of 676)
+[2024-12-04 17:23:56] Importing Spliterator.members#61.0-1728568919000-java.trap.gz (482 of 676)
+[2024-12-04 17:23:56] Importing TimeZone.members#61.0-1728568919000-java.trap.gz (483 of 676)
+[2024-12-04 17:23:56] Importing WeakHashMap$Entry.members#61.0-1728568919000-java.trap.gz (484 of 676)
+[2024-12-04 17:23:56] Importing WeakHashMap.members#61.0-1728568919000-java.trap.gz (485 of 676)
+[2024-12-04 17:23:56] Importing Callable.members#61.0-1728568919000-java.trap.gz (486 of 676)
+[2024-12-04 17:23:56] Importing ConcurrentHashMap$CollectionView.members#61.0-1728568919000-java.trap.gz (487 of 676)
+[2024-12-04 17:23:56] Importing ConcurrentHashMap$KeySetView.members#61.0-1728568919000-java.trap.gz (488 of 676)
+[2024-12-04 17:23:56] Importing ConcurrentHashMap$Node.members#61.0-1728568919000-java.trap.gz (489 of 676)
+[2024-12-04 17:23:56] Importing ConcurrentHashMap.members#61.0-1728568919000-java.trap.gz (490 of 676)
+[2024-12-04 17:23:56] Importing ConcurrentMap.members#61.0-1728568919000-java.trap.gz (491 of 676)
+[2024-12-04 17:23:56] Importing ExecutionException.members#61.0-1728568919000-java.trap.gz (492 of 676)
+[2024-12-04 17:23:56] Importing Executor.members#61.0-1728568919000-java.trap.gz (493 of 676)
+[2024-12-04 17:23:56] Importing ExecutorService.members#61.0-1728568919000-java.trap.gz (494 of 676)
+[2024-12-04 17:23:56] Importing Future.members#61.0-1728568919000-java.trap.gz (495 of 676)
+[2024-12-04 17:23:56] Importing ThreadFactory.members#61.0-1728568919000-java.trap.gz (496 of 676)
+[2024-12-04 17:23:56] Importing TimeUnit.members#61.0-1728568919000-java.trap.gz (497 of 676)
+[2024-12-04 17:23:56] Importing TimeoutException.members#61.0-1728568919000-java.trap.gz (498 of 676)
+[2024-12-04 17:23:56] Importing BiConsumer.members#61.0-1728568919000-java.trap.gz (499 of 676)
+[2024-12-04 17:23:56] Importing BiFunction.members#61.0-1728568919000-java.trap.gz (500 of 676)
+[2024-12-04 17:23:56] Importing BinaryOperator.members#61.0-1728568919000-java.trap.gz (501 of 676)
+[2024-12-04 17:23:56] Importing Consumer.members#61.0-1728568919000-java.trap.gz (502 of 676)
+[2024-12-04 17:23:56] Importing DoubleBinaryOperator.members#61.0-1728568919000-java.trap.gz (503 of 676)
+[2024-12-04 17:23:56] Importing DoubleConsumer.members#61.0-1728568919000-java.trap.gz (504 of 676)
+[2024-12-04 17:23:56] Importing DoubleFunction.members#61.0-1728568919000-java.trap.gz (505 of 676)
+[2024-12-04 17:23:56] Importing DoublePredicate.members#61.0-1728568919000-java.trap.gz (506 of 676)
+[2024-12-04 17:23:56] Importing DoubleSupplier.members#61.0-1728568919000-java.trap.gz (507 of 676)
+[2024-12-04 17:23:56] Importing DoubleToIntFunction.members#61.0-1728568919000-java.trap.gz (508 of 676)
+[2024-12-04 17:23:56] Importing DoubleToLongFunction.members#61.0-1728568919000-java.trap.gz (509 of 676)
+[2024-12-04 17:23:56] Importing DoubleUnaryOperator.members#61.0-1728568919000-java.trap.gz (510 of 676)
+[2024-12-04 17:23:56] Importing Function.members#61.0-1728568919000-java.trap.gz (511 of 676)
+[2024-12-04 17:23:56] Importing IntBinaryOperator.members#61.0-1728568919000-java.trap.gz (512 of 676)
+[2024-12-04 17:23:56] Importing IntConsumer.members#61.0-1728568919000-java.trap.gz (513 of 676)
+[2024-12-04 17:23:56] Importing IntFunction.members#61.0-1728568919000-java.trap.gz (514 of 676)
+[2024-12-04 17:23:56] Importing IntPredicate.members#61.0-1728568919000-java.trap.gz (515 of 676)
+[2024-12-04 17:23:56] Importing IntSupplier.members#61.0-1728568919000-java.trap.gz (516 of 676)
+[2024-12-04 17:23:56] Importing IntToDoubleFunction.members#61.0-1728568919000-java.trap.gz (517 of 676)
+[2024-12-04 17:23:56] Importing IntToLongFunction.members#61.0-1728568919000-java.trap.gz (518 of 676)
+[2024-12-04 17:23:56] Importing IntUnaryOperator.members#61.0-1728568919000-java.trap.gz (519 of 676)
+[2024-12-04 17:23:56] Importing LongBinaryOperator.members#61.0-1728568919000-java.trap.gz (520 of 676)
+[2024-12-04 17:23:56] Importing LongConsumer.members#61.0-1728568919000-java.trap.gz (521 of 676)
+[2024-12-04 17:23:56] Importing LongFunction.members#61.0-1728568919000-java.trap.gz (522 of 676)
+[2024-12-04 17:23:56] Importing LongPredicate.members#61.0-1728568919000-java.trap.gz (523 of 676)
+[2024-12-04 17:23:56] Importing LongSupplier.members#61.0-1728568919000-java.trap.gz (524 of 676)
+[2024-12-04 17:23:56] Importing LongToDoubleFunction.members#61.0-1728568919000-java.trap.gz (525 of 676)
+[2024-12-04 17:23:56] Importing LongToIntFunction.members#61.0-1728568919000-java.trap.gz (526 of 676)
+[2024-12-04 17:23:56] Importing LongUnaryOperator.members#61.0-1728568919000-java.trap.gz (527 of 676)
+[2024-12-04 17:23:56] Importing ObjDoubleConsumer.members#61.0-1728568919000-java.trap.gz (528 of 676)
+[2024-12-04 17:23:56] Importing ObjIntConsumer.members#61.0-1728568919000-java.trap.gz (529 of 676)
+[2024-12-04 17:23:56] Importing ObjLongConsumer.members#61.0-1728568919000-java.trap.gz (530 of 676)
+[2024-12-04 17:23:56] Importing Predicate.members#61.0-1728568919000-java.trap.gz (531 of 676)
+[2024-12-04 17:23:56] Importing Supplier.members#61.0-1728568919000-java.trap.gz (532 of 676)
+[2024-12-04 17:23:56] Importing ToDoubleBiFunction.members#61.0-1728568919000-java.trap.gz (533 of 676)
+[2024-12-04 17:23:56] Importing ToDoubleFunction.members#61.0-1728568919000-java.trap.gz (534 of 676)
+[2024-12-04 17:23:56] Importing ToIntBiFunction.members#61.0-1728568919000-java.trap.gz (535 of 676)
+[2024-12-04 17:23:56] Importing ToIntFunction.members#61.0-1728568919000-java.trap.gz (536 of 676)
+[2024-12-04 17:23:56] Importing ToLongBiFunction.members#61.0-1728568919000-java.trap.gz (537 of 676)
+[2024-12-04 17:23:56] Importing ToLongFunction.members#61.0-1728568919000-java.trap.gz (538 of 676)
+[2024-12-04 17:23:56] Importing UnaryOperator.members#61.0-1728568919000-java.trap.gz (539 of 676)
+[2024-12-04 17:23:56] Importing ErrorManager.members#61.0-1728568919000-java.trap.gz (540 of 676)
+[2024-12-04 17:23:56] Importing Filter.members#61.0-1728568919000-java.trap.gz (541 of 676)
+[2024-12-04 17:23:56] Importing Formatter.members#61.0-1728568919000-java.trap.gz (542 of 676)
+[2024-12-04 17:23:56] Importing Handler.members#61.0-1728568919000-java.trap.gz (543 of 676)
+[2024-12-04 17:23:56] Importing Level.members#61.0-1728568919000-java.trap.gz (544 of 676)
+[2024-12-04 17:23:56] Importing LogManager$LogNode.members#61.0-1728568919000-java.trap.gz (545 of 676)
+[2024-12-04 17:23:56] Importing LogManager$LoggerContext.members#61.0-1728568919000-java.trap.gz (546 of 676)
+[2024-12-04 17:23:56] Importing LogManager$LoggerWeakRef.members#61.0-1728568919000-java.trap.gz (547 of 676)
+[2024-12-04 17:23:56] Importing LogManager.members#61.0-1728568919000-java.trap.gz (548 of 676)
+[2024-12-04 17:23:56] Importing LogRecord.members#61.0-1728568919000-java.trap.gz (549 of 676)
+[2024-12-04 17:23:56] Importing Logger.members#61.0-1728568919000-java.trap.gz (550 of 676)
+[2024-12-04 17:23:56] Importing LoggingMXBean.members#61.0-1728568919000-java.trap.gz (551 of 676)
+[2024-12-04 17:23:56] Importing RandomGenerator.members#61.0-1728568919000-java.trap.gz (552 of 676)
+[2024-12-04 17:23:56] Importing BaseStream.members#61.0-1728568919000-java.trap.gz (553 of 676)
+[2024-12-04 17:23:56] Importing Collector$Characteristics.members#61.0-1728568919000-java.trap.gz (554 of 676)
+[2024-12-04 17:23:56] Importing Collector.members#61.0-1728568919000-java.trap.gz (555 of 676)
+[2024-12-04 17:23:56] Importing DoubleStream$Builder.members#61.0-1728568919000-java.trap.gz (556 of 676)
+[2024-12-04 17:23:56] Importing DoubleStream$DoubleMapMultiConsumer.members#61.0-1728568919000-java.trap.gz (557 of 676)
+[2024-12-04 17:23:56] Importing DoubleStream.members#61.0-1728568919000-java.trap.gz (558 of 676)
+[2024-12-04 17:23:56] Importing IntStream$Builder.members#61.0-1728568919000-java.trap.gz (559 of 676)
+[2024-12-04 17:23:56] Importing IntStream$IntMapMultiConsumer.members#61.0-1728568919000-java.trap.gz (560 of 676)
+[2024-12-04 17:23:56] Importing IntStream.members#61.0-1728568919000-java.trap.gz (561 of 676)
+[2024-12-04 17:23:56] Importing LongStream$Builder.members#61.0-1728568919000-java.trap.gz (562 of 676)
+[2024-12-04 17:23:56] Importing LongStream$LongMapMultiConsumer.members#61.0-1728568919000-java.trap.gz (563 of 676)
+[2024-12-04 17:23:56] Importing LongStream.members#61.0-1728568919000-java.trap.gz (564 of 676)
+[2024-12-04 17:23:56] Importing Stream$Builder.members#61.0-1728568919000-java.trap.gz (565 of 676)
+[2024-12-04 17:23:56] Importing Stream.members#61.0-1728568919000-java.trap.gz (566 of 676)
+[2024-12-04 17:23:56] Importing Subject.members#61.0-1728568919000-java.trap.gz (567 of 676)
+[2024-12-04 17:23:56] Importing Result.members#61.0-1728568919000-java.trap.gz (568 of 676)
+[2024-12-04 17:23:56] Importing Source.members#61.0-1728568919000-java.trap.gz (569 of 676)
+[2024-12-04 17:23:56] Importing ValueBased.members#61.0-1728568919000-java.trap.gz (570 of 676)
+[2024-12-04 17:23:56] Importing MemorySegmentProxy.members#61.0-1728568919000-java.trap.gz (571 of 676)
+[2024-12-04 17:23:56] Importing UnmapperProxy.members#61.0-1728568919000-java.trap.gz (572 of 676)
+[2024-12-04 17:23:56] Importing NativeLibrary.members#61.0-1728568919000-java.trap.gz (573 of 676)
+[2024-12-04 17:23:56] Importing ScopedMemoryAccess$Scope$Handle.members#61.0-1728568919000-java.trap.gz (574 of 676)
+[2024-12-04 17:23:56] Importing ScopedMemoryAccess$Scope$ScopedAccessError.members#61.0-1728568919000-java.trap.gz (575 of 676)
+[2024-12-04 17:23:56] Importing ScopedMemoryAccess$Scope.members#61.0-1728568919000-java.trap.gz (576 of 676)
+[2024-12-04 17:23:56] Importing ScopedMemoryAccess$Scoped.members#61.0-1728568919000-java.trap.gz (577 of 676)
+[2024-12-04 17:23:56] Importing ScopedMemoryAccess.members#61.0-1728568919000-java.trap.gz (578 of 676)
+[2024-12-04 17:23:56] Importing Unsafe.members#61.0-1728568919000-java.trap.gz (579 of 676)
+[2024-12-04 17:23:56] Importing ServicesCatalog$ServiceProvider.members#61.0-1728568919000-java.trap.gz (580 of 676)
+[2024-12-04 17:23:56] Importing ServicesCatalog.members#61.0-1728568919000-java.trap.gz (581 of 676)
+[2024-12-04 17:23:56] Importing CleanerImpl.members#61.0-1728568919000-java.trap.gz (582 of 676)
+[2024-12-04 17:23:56] Importing PhantomCleanable.members#61.0-1728568919000-java.trap.gz (583 of 676)
+[2024-12-04 17:23:56] Importing CallerSensitive.members#61.0-1728568919000-java.trap.gz (584 of 676)
+[2024-12-04 17:23:56] Importing ConstantPool$Tag.members#61.0-1728568919000-java.trap.gz (585 of 676)
+[2024-12-04 17:23:56] Importing ConstantPool.members#61.0-1728568919000-java.trap.gz (586 of 676)
+[2024-12-04 17:23:56] Importing ConstructorAccessor.members#61.0-1728568919000-java.trap.gz (587 of 676)
+[2024-12-04 17:23:56] Importing FieldAccessor.members#61.0-1728568919000-java.trap.gz (588 of 676)
+[2024-12-04 17:23:56] Importing MethodAccessor.members#61.0-1728568919000-java.trap.gz (589 of 676)
+[2024-12-04 17:23:56] Importing ReflectionFactory.members#61.0-1728568919000-java.trap.gz (590 of 676)
+[2024-12-04 17:23:56] Importing RandomSupport$RandomGeneratorProperties.members#61.0-1728568919000-java.trap.gz (591 of 676)
+[2024-12-04 17:23:56] Importing RandomSupport.members#61.0-1728568919000-java.trap.gz (592 of 676)
+[2024-12-04 17:23:56] Importing Contended.members#61.0-1728568919000-java.trap.gz (593 of 676)
+[2024-12-04 17:23:56] Importing DontInline.members#61.0-1728568919000-java.trap.gz (594 of 676)
+[2024-12-04 17:23:56] Importing ForceInline.members#61.0-1728568919000-java.trap.gz (595 of 676)
+[2024-12-04 17:23:56] Importing Hidden.members#61.0-1728568919000-java.trap.gz (596 of 676)
+[2024-12-04 17:23:56] Importing IntrinsicCandidate.members#61.0-1728568919000-java.trap.gz (597 of 676)
+[2024-12-04 17:23:56] Importing Stable.members#61.0-1728568919000-java.trap.gz (598 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$BroadcastOperation.members#61.0-1728568919000-java.trap.gz (599 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$IndexOperation.members#61.0-1728568919000-java.trap.gz (600 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$LoadOperation.members#61.0-1728568919000-java.trap.gz (601 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$LoadVectorOperationWithMap.members#61.0-1728568919000-java.trap.gz (602 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$ShuffleIotaOperation.members#61.0-1728568919000-java.trap.gz (603 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$ShuffleToVectorOperation.members#61.0-1728568919000-java.trap.gz (604 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$StoreVectorOperation.members#61.0-1728568919000-java.trap.gz (605 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$StoreVectorOperationWithMap.members#61.0-1728568919000-java.trap.gz (606 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$TernaryOperation.members#61.0-1728568919000-java.trap.gz (607 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VecExtractOp.members#61.0-1728568919000-java.trap.gz (608 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VecInsertOp.members#61.0-1728568919000-java.trap.gz (609 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$Vector.members#61.0-1728568919000-java.trap.gz (610 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorBlendOp.members#61.0-1728568919000-java.trap.gz (611 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorBroadcastIntOp.members#61.0-1728568919000-java.trap.gz (612 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorCompareOp.members#61.0-1728568919000-java.trap.gz (613 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorConvertOp.members#61.0-1728568919000-java.trap.gz (614 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorMask.members#61.0-1728568919000-java.trap.gz (615 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorMaskOp.members#61.0-1728568919000-java.trap.gz (616 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorPayload.members#61.0-1728568919000-java.trap.gz (617 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorRearrangeOp.members#61.0-1728568919000-java.trap.gz (618 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorShuffle.members#61.0-1728568919000-java.trap.gz (619 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport$VectorSpecies.members#61.0-1728568919000-java.trap.gz (620 of 676)
+[2024-12-04 17:23:56] Importing VectorSupport.members#61.0-1728568919000-java.trap.gz (621 of 676)
+[2024-12-04 17:23:56] Importing TestApp.members#0.0-1733191879923-java.trap.gz (622 of 676)
+[2024-12-04 17:23:56] Importing Empty.members#61.0-1728568919000-java.trap.gz (623 of 676)
+[2024-12-04 17:23:56] Importing Wrapper.members#61.0-1728568919000-java.trap.gz (624 of 676)
+[2024-12-04 17:23:56] Importing Interruptible.members#61.0-1728568919000-java.trap.gz (625 of 676)
+[2024-12-04 17:23:56] Importing AnnotationType.members#61.0-1728568919000-java.trap.gz (626 of 676)
+[2024-12-04 17:23:56] Importing GenericsFactory.members#61.0-1728568919000-java.trap.gz (627 of 676)
+[2024-12-04 17:23:56] Importing AbstractRepository.members#61.0-1728568919000-java.trap.gz (628 of 676)
+[2024-12-04 17:23:56] Importing ConstructorRepository.members#61.0-1728568919000-java.trap.gz (629 of 676)
+[2024-12-04 17:23:56] Importing GenericDeclRepository.members#61.0-1728568919000-java.trap.gz (630 of 676)
+[2024-12-04 17:23:56] Importing MethodRepository.members#61.0-1728568919000-java.trap.gz (631 of 676)
+[2024-12-04 17:23:56] Importing ArrayTypeSignature.members#61.0-1728568919000-java.trap.gz (632 of 676)
+[2024-12-04 17:23:56] Importing BaseType.members#61.0-1728568919000-java.trap.gz (633 of 676)
+[2024-12-04 17:23:56] Importing BooleanSignature.members#61.0-1728568919000-java.trap.gz (634 of 676)
+[2024-12-04 17:23:56] Importing BottomSignature.members#61.0-1728568919000-java.trap.gz (635 of 676)
+[2024-12-04 17:23:56] Importing ByteSignature.members#61.0-1728568919000-java.trap.gz (636 of 676)
+[2024-12-04 17:23:56] Importing CharSignature.members#61.0-1728568919000-java.trap.gz (637 of 676)
+[2024-12-04 17:23:56] Importing ClassSignature.members#61.0-1728568919000-java.trap.gz (638 of 676)
+[2024-12-04 17:23:56] Importing ClassTypeSignature.members#61.0-1728568919000-java.trap.gz (639 of 676)
+[2024-12-04 17:23:56] Importing DoubleSignature.members#61.0-1728568919000-java.trap.gz (640 of 676)
+[2024-12-04 17:23:56] Importing FieldTypeSignature.members#61.0-1728568919000-java.trap.gz (641 of 676)
+[2024-12-04 17:23:56] Importing FloatSignature.members#61.0-1728568919000-java.trap.gz (642 of 676)
+[2024-12-04 17:23:56] Importing FormalTypeParameter.members#61.0-1728568919000-java.trap.gz (643 of 676)
+[2024-12-04 17:23:56] Importing IntSignature.members#61.0-1728568919000-java.trap.gz (644 of 676)
+[2024-12-04 17:23:56] Importing LongSignature.members#61.0-1728568919000-java.trap.gz (645 of 676)
+[2024-12-04 17:23:56] Importing MethodTypeSignature.members#61.0-1728568919000-java.trap.gz (646 of 676)
+[2024-12-04 17:23:56] Importing ReturnType.members#61.0-1728568919000-java.trap.gz (647 of 676)
+[2024-12-04 17:23:56] Importing ShortSignature.members#61.0-1728568919000-java.trap.gz (648 of 676)
+[2024-12-04 17:23:56] Importing Signature.members#61.0-1728568919000-java.trap.gz (649 of 676)
+[2024-12-04 17:23:56] Importing SimpleClassTypeSignature.members#61.0-1728568919000-java.trap.gz (650 of 676)
+[2024-12-04 17:23:56] Importing Tree.members#61.0-1728568919000-java.trap.gz (651 of 676)
+[2024-12-04 17:23:56] Importing TypeArgument.members#61.0-1728568919000-java.trap.gz (652 of 676)
+[2024-12-04 17:23:56] Importing TypeSignature.members#61.0-1728568919000-java.trap.gz (653 of 676)
+[2024-12-04 17:23:56] Importing TypeTree.members#61.0-1728568919000-java.trap.gz (654 of 676)
+[2024-12-04 17:23:56] Importing TypeVariableSignature.members#61.0-1728568919000-java.trap.gz (655 of 676)
+[2024-12-04 17:23:56] Importing VoidDescriptor.members#61.0-1728568919000-java.trap.gz (656 of 676)
+[2024-12-04 17:23:56] Importing Wildcard.members#61.0-1728568919000-java.trap.gz (657 of 676)
+[2024-12-04 17:23:56] Importing Reifier.members#61.0-1728568919000-java.trap.gz (658 of 676)
+[2024-12-04 17:23:56] Importing TypeTreeVisitor.members#61.0-1728568919000-java.trap.gz (659 of 676)
+[2024-12-04 17:23:56] Importing Visitor.members#61.0-1728568919000-java.trap.gz (660 of 676)
+[2024-12-04 17:23:56] Importing Debug.members#61.0-1728568919000-java.trap.gz (661 of 676)
+[2024-12-04 17:23:56] Importing BaseLocale.members#61.0-1728568919000-java.trap.gz (662 of 676)
+[2024-12-04 17:23:56] Importing Extension.members#61.0-1728568919000-java.trap.gz (663 of 676)
+[2024-12-04 17:23:56] Importing InternalLocaleBuilder$CaseInsensitiveChar.members#61.0-1728568919000-java.trap.gz (664 of 676)
+[2024-12-04 17:23:56] Importing InternalLocaleBuilder$CaseInsensitiveString.members#61.0-1728568919000-java.trap.gz (665 of 676)
+[2024-12-04 17:23:56] Importing InternalLocaleBuilder.members#61.0-1728568919000-java.trap.gz (666 of 676)
+[2024-12-04 17:23:56] Importing LanguageTag.members#61.0-1728568919000-java.trap.gz (667 of 676)
+[2024-12-04 17:23:56] Importing LocaleExtensions.members#61.0-1728568919000-java.trap.gz (668 of 676)
+[2024-12-04 17:23:56] Importing LocaleSyntaxException.members#61.0-1728568919000-java.trap.gz (669 of 676)
+[2024-12-04 17:23:56] Importing ParseStatus.members#61.0-1728568919000-java.trap.gz (670 of 676)
+[2024-12-04 17:23:56] Importing diagnostic.trap.gz (671 of 676)
+[2024-12-04 17:23:56] Importing java.base.trap.gz (672 of 676)
+[2024-12-04 17:23:56] Importing java.logging.trap.gz (673 of 676)
+[2024-12-04 17:23:56] Importing java.sql.trap.gz (674 of 676)
+[2024-12-04 17:23:56] Importing java.xml.trap.gz (675 of 676)
+[2024-12-04 17:23:56] Importing sourceLocationPrefix.trap.gz (676 of 676)
+[2024-12-04 17:23:56] [PROGRESS] dataset import> Merging relations
+[2024-12-04 17:23:56] Merging 1 fragment for 'files'.
+[2024-12-04 17:23:56] Merged 5392 bytes (5.27 KiB) for 'files'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'folders'.
+[2024-12-04 17:23:56] Merged 744 bytes for 'folders'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'containerparent'.
+[2024-12-04 17:23:56] Merged 6120 bytes (5.98 KiB) for 'containerparent'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'locations_default'.
+[2024-12-04 17:23:56] Merged 18216 bytes (17.79 KiB) for 'locations_default'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'xmllocations'.
+[2024-12-04 17:23:56] Merged 144 bytes for 'xmllocations'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'xmlNs'.
+[2024-12-04 17:23:56] Merged 32 bytes for 'xmlNs'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'xmlElements'.
+[2024-12-04 17:23:56] Merged 160 bytes for 'xmlElements'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'xmlHasNs'.
+[2024-12-04 17:23:56] Merged 108 bytes for 'xmlHasNs'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'xmlAttrs'.
+[2024-12-04 17:23:56] Merged 24 bytes for 'xmlAttrs'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'xmlChars'.
+[2024-12-04 17:23:56] Merged 144 bytes for 'xmlChars'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'numlines'.
+[2024-12-04 17:23:56] Merged 208 bytes for 'numlines'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'xmlEncoding'.
+[2024-12-04 17:23:56] Merged 8 bytes for 'xmlEncoding'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'hasLocation'.
+[2024-12-04 17:23:56] Merged 147496 bytes (144.04 KiB) for 'hasLocation'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'packages'.
+[2024-12-04 17:23:56] Merged 1280 bytes (1.25 KiB) for 'packages'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'cupackage'.
+[2024-12-04 17:23:56] Merged 5368 bytes (5.24 KiB) for 'cupackage'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'imports'.
+[2024-12-04 17:23:56] Merged 16 bytes for 'imports'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'primitives'.
+[2024-12-04 17:23:56] Merged 72 bytes for 'primitives'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'stmts'.
+[2024-12-04 17:23:56] Merged 320 bytes for 'stmts'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'callableBinding'.
+[2024-12-04 17:23:56] Merged 64 bytes for 'callableBinding'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'arrays'.
+[2024-12-04 17:23:56] Merged 3620 bytes (3.54 KiB) for 'arrays'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'fields'.
+[2024-12-04 17:23:56] Merged 24960 bytes (24.38 KiB) for 'fields'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'modifiers'.
+[2024-12-04 17:23:56] Merged 96 bytes for 'modifiers'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'hasModifier'.
+[2024-12-04 17:23:56] Merged 196048 bytes (191.45 KiB) for 'hasModifier'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'methods'.
+[2024-12-04 17:23:56] Merged 249528 bytes (243.68 KiB) for 'methods'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'extendsReftype'.
+[2024-12-04 17:23:56] Merged 22184 bytes (21.66 KiB) for 'extendsReftype'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'implInterface'.
+[2024-12-04 17:23:56] Merged 15120 bytes (14.77 KiB) for 'implInterface'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'exprs'.
+[2024-12-04 17:23:56] Merged 38300 bytes (37.40 KiB) for 'exprs'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'callableEnclosingExpr'.
+[2024-12-04 17:23:56] Merged 328 bytes for 'callableEnclosingExpr'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'params'.
+[2024-12-04 17:23:56] Merged 238220 bytes (232.64 KiB) for 'params'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'paramName'.
+[2024-12-04 17:23:56] Merged 8 bytes for 'paramName'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'statementEnclosingExpr'.
+[2024-12-04 17:23:56] Merged 304 bytes for 'statementEnclosingExpr'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'localvars'.
+[2024-12-04 17:23:56] Merged 96 bytes for 'localvars'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'namestrings'.
+[2024-12-04 17:23:56] Merged 3792 bytes (3.70 KiB) for 'namestrings'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'variableBinding'.
+[2024-12-04 17:23:56] Merged 448 bytes for 'variableBinding'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'javadoc'.
+[2024-12-04 17:23:56] Merged 4 bytes for 'javadoc'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isNormalComment'.
+[2024-12-04 17:23:56] Merged 4 bytes for 'isNormalComment'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isEolComment'.
+[2024-12-04 17:23:56] Merged 4 bytes for 'isEolComment'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'javadocText'.
+[2024-12-04 17:23:56] Merged 16 bytes for 'javadocText'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'configs'.
+[2024-12-04 17:23:56] Merged 12 bytes for 'configs'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'configLocations'.
+[2024-12-04 17:23:56] Merged 72 bytes for 'configLocations'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'configNames'.
+[2024-12-04 17:23:56] Merged 36 bytes for 'configNames'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'configValues'.
+[2024-12-04 17:23:56] Merged 36 bytes for 'configValues'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'classes_or_interfaces'.
+[2024-12-04 17:23:56] Merged 40816 bytes (39.86 KiB) for 'classes_or_interfaces'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isInterface'.
+[2024-12-04 17:23:56] Merged 6028 bytes (5.89 KiB) for 'isInterface'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'cumodule'.
+[2024-12-04 17:23:56] Merged 5352 bytes (5.23 KiB) for 'cumodule'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'exceptions'.
+[2024-12-04 17:23:56] Merged 19440 bytes (18.98 KiB) for 'exceptions'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isVarargsParam'.
+[2024-12-04 17:23:56] Merged 612 bytes for 'isVarargsParam'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'typeArgs'.
+[2024-12-04 17:23:56] Merged 26760 bytes (26.13 KiB) for 'typeArgs'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isParameterized'.
+[2024-12-04 17:23:56] Merged 7120 bytes (6.95 KiB) for 'isParameterized'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'annotValue'.
+[2024-12-04 17:23:56] Merged 4116 bytes (4.02 KiB) for 'annotValue'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'constrs'.
+[2024-12-04 17:23:56] Merged 17928 bytes (17.51 KiB) for 'constrs'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'enclInReftype'.
+[2024-12-04 17:23:56] Merged 3008 bytes (2.94 KiB) for 'enclInReftype'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isRaw'.
+[2024-12-04 17:23:56] Merged 396 bytes for 'isRaw'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'wildcards'.
+[2024-12-04 17:23:56] Merged 2628 bytes (2.57 KiB) for 'wildcards'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'typeBounds'.
+[2024-12-04 17:23:56] Merged 5472 bytes (5.34 KiB) for 'typeBounds'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'typeVars'.
+[2024-12-04 17:23:56] Merged 8320 bytes (8.12 KiB) for 'typeVars'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isEnumType'.
+[2024-12-04 17:23:56] Merged 180 bytes for 'isEnumType'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isEnumConst'.
+[2024-12-04 17:23:56] Merged 1364 bytes (1.33 KiB) for 'isEnumConst'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isAnnotType'.
+[2024-12-04 17:23:56] Merged 68 bytes for 'isAnnotType'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isAnnotElem'.
+[2024-12-04 17:23:56] Merged 52 bytes for 'isAnnotElem'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'permits'.
+[2024-12-04 17:23:56] Merged 160 bytes for 'permits'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isDefConstr'.
+[2024-12-04 17:23:56] Merged 4 bytes for 'isDefConstr'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilations'.
+[2024-12-04 17:23:56] Merged 16 bytes for 'compilations'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilation_args'.
+[2024-12-04 17:23:56] Merged 48 bytes for 'compilation_args'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilation_expanded_args'.
+[2024-12-04 17:23:56] Merged 228 bytes for 'compilation_expanded_args'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'diagnostic_for'.
+[2024-12-04 17:23:56] Merged 16 bytes for 'diagnostic_for'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'diagnostics'.
+[2024-12-04 17:23:56] Merged 28 bytes for 'diagnostics'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilation_info'.
+[2024-12-04 17:23:56] Merged 36 bytes for 'compilation_info'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilation_time'.
+[2024-12-04 17:23:56] Merged 160 bytes for 'compilation_time'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilation_compiling_files'.
+[2024-12-04 17:23:56] Merged 12 bytes for 'compilation_compiling_files'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilation_compiling_files_completed'.
+[2024-12-04 17:23:56] Merged 12 bytes for 'compilation_compiling_files_completed'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'compilation_finished'.
+[2024-12-04 17:23:56] Merged 24 bytes for 'compilation_finished'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'modules'.
+[2024-12-04 17:23:56] Merged 376 bytes for 'modules'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'exports'.
+[2024-12-04 17:23:56] Merged 1216 bytes (1.19 KiB) for 'exports'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'directives'.
+[2024-12-04 17:23:56] Merged 1648 bytes (1.61 KiB) for 'directives'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'exportsTo'.
+[2024-12-04 17:23:56] Merged 1400 bytes (1.37 KiB) for 'exportsTo'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'uses'.
+[2024-12-04 17:23:56] Merged 360 bytes for 'uses'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'provides'.
+[2024-12-04 17:23:56] Merged 24 bytes for 'provides'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'providesWith'.
+[2024-12-04 17:23:56] Merged 40 bytes for 'providesWith'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'requires'.
+[2024-12-04 17:23:56] Merged 48 bytes for 'requires'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'isTransitive'.
+[2024-12-04 17:23:56] Merged 12 bytes for 'isTransitive'.
+[2024-12-04 17:23:56] Merging 1 fragment for 'sourceLocationPrefix'.
+[2024-12-04 17:23:56] Merged 4 bytes for 'sourceLocationPrefix'.
+[2024-12-04 17:23:56] Saving string and id pools to disk.
+[2024-12-04 17:23:56] Finished importing TRAP files.
+[2024-12-04 17:23:56] Read 8.27 MiB of uncompressed TRAP data.
+[2024-12-04 17:23:56] Relation data size: 1.08 MiB (merge rate: 22.04 MiB/s)
+[2024-12-04 17:23:56] String pool size: 2.41 MiB
+[2024-12-04 17:23:56] ID pool size: 1.75 MiB
+[2024-12-04 17:23:56] [PROGRESS] dataset import> Finished writing database (relations: 1.08 MiB; string pool: 2.41 MiB).
+[2024-12-04 17:23:56] Pausing evaluation to close the cache at sequence stamp o+167
+[2024-12-04 17:23:56] The disk cache is freshly trimmed; leave it be.
+[2024-12-04 17:23:56] Unpausing evaluation
+[2024-12-04 17:23:56] Plumbing command codeql dataset import completed.
+[2024-12-04 17:23:56] [PROGRESS] database finalize> TRAP import complete (730ms).
+[2024-12-04 17:23:56] Running plumbing command: codeql database cleanup -- /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code
+[2024-12-04 17:23:56] [PROGRESS] database cleanup> Cleaning up existing TRAP files after import...
+[2024-12-04 17:23:56] [PROGRESS] database cleanup> TRAP files cleaned up (136ms).
+[2024-12-04 17:23:56] [PROGRESS] database cleanup> Cleaning up scratch directory...
+[2024-12-04 17:23:56] [PROGRESS] database cleanup> Scratch directory cleaned up (3ms).
+[2024-12-04 17:23:56] Running plumbing command: codeql dataset cleanup -- /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java
+[2024-12-04 17:23:56] [PROGRESS] dataset cleanup> Cleaning up dataset in /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java.
+[2024-12-04 17:23:56] Trimming disk cache at /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java/default/cache in mode trim.
+[2024-12-04 17:23:56] Sequence stamp origin is -6109416445938884151
+[2024-12-04 17:23:56] Pausing evaluation to quickly trim memory at sequence stamp o+0
+[2024-12-04 17:23:56] Unpausing evaluation
+[2024-12-04 17:23:56] Pausing evaluation to zealously trim disk at sequence stamp o+1
+[2024-12-04 17:23:56] Unpausing evaluation
+[2024-12-04 17:23:56] Trimming completed (3ms): Trimmed disposable data from cache.
+[2024-12-04 17:23:56] Pausing evaluation to close the cache at sequence stamp o+2
+[2024-12-04 17:23:56] The disk cache is freshly trimmed; leave it be.
+[2024-12-04 17:23:56] Unpausing evaluation
+[2024-12-04 17:23:56] [PROGRESS] dataset cleanup> Trimmed disposable data from cache.
+[2024-12-04 17:23:56] [PROGRESS] dataset cleanup> Finalizing dataset in /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java
+[2024-12-04 17:23:56] [DETAILS] dataset cleanup> Finished deleting ID pool from /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code/db-java (1ms).
+[2024-12-04 17:23:56] Plumbing command codeql dataset cleanup completed.
+[2024-12-04 17:23:56] Plumbing command codeql database cleanup completed with status 0.
+[2024-12-04 17:23:56] [PROGRESS] database finalize> Finished zipping source archive (1.45 KiB).
+[2024-12-04 17:23:56] Plumbing command codeql database finalize completed.
+[2024-12-04 17:23:56] [PROGRESS] database create> Successfully created database at /Users/haeirn/Documents/devsecops_project/codeql-db/java/test_code.
+[2024-12-04 17:23:56] Terminating normally.
