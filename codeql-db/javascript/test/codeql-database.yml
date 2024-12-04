@@ -1,0 +1,10 @@
+---
+sourceLocationPrefix: /Users/haeirn/devsecops_project/test
+baselineLinesOfCode: 6
+unicodeNewlines: true
+columnKind: utf16
+primaryLanguage: javascript
+creationMetadata:
+  cliVersion: 2.19.4
+  creationTime: 2024-12-04T05:16:26.387452Z
+finalised: true
