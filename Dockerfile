@@ -37,6 +37,7 @@ COPY . /app/
 RUN mkdir -p /app/results /app/sbom /app/codeql-repo
 
 # 환경 변수 설정
+ENV PATH="/app/codeql:${PATH}"
 ENV FLASK_APP=guidelineDB.py
 ENV FLASK_RUN_HOST=0.0.0.0
 
