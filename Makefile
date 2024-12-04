@@ -1,6 +1,9 @@
 all:
 	docker build -t test .
-	docker run -d --name test test
+	docker run -it -d --name test test
+
+exec:
+	docker exec -it test /bin/bash
 
 clean:
 	docker stop test;
@@ -12,7 +15,7 @@ fclean: clean
 	docker rm `docker ps -aq`;
 	docker rmi `docker images -aq`;
 
-re: clean
+re: fclean
 	$(Make) all
 
-.PHONY: all clean re
+.PHONY: all clean re fclean exec

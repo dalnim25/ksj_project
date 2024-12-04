@@ -17,9 +17,8 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # CodeQL CLI 설치
-RUN mkdir -p /codeql \
-    && wget https://github.com/github/codeql-cli-binaries/releases/latest/download/codeql-linux64.zip \
-    && unzip codeql-linux64.zip -d /codeql \
+RUN wget https://github.com/github/codeql-cli-binaries/releases/latest/download/codeql-linux64.zip \
+    && unzip codeql-linux64.zip -d /app \
     && rm codeql-linux64.zip
 
 # Python 개발 및 보안 분석에 필요한 도구 설치
