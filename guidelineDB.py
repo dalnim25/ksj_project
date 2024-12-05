@@ -248,7 +248,8 @@ def main(argv):
     if '-sbom' in argv:
         sbom_analyze(source_root)
     if '-g' in argv or '--guideline' in argv:
-        app.run(debug=True)
+        port = int(os.environ.get("FLASK_RUN_PORT", 5000))
+        app.run(host="0.0.0.0", port=port, debug=True)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
